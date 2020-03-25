@@ -6,9 +6,6 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- HERE WE REFERENCE JQUERY TO USE AS A LIBRARY -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 <!-- HERE WE LINK THE STYLESHEETS USING JINJA TEMPLATING {{ value }} AND url_for() WHICH IS A FUNCTION/METHOD IN FLASK TO FIND THE PATH FOR A FILE DYNAMICALLY -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"></head>
