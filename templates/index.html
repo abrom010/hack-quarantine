@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TITLE</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- HERE WE LINK THE STYLESHEETS USING JINJA TEMPLATING {{ value }} AND url_for() WHICH IS A FUNCTION/METHOD IN FLASK TO FIND THE PATH FOR A FILE DYNAMICALLY -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"></head>
+<body>
+  <app-root>HELLO WORLD</app-root>
+
+<!-- THIS P TAG WILL BE MODIFIED WITH THE SCRIPT THAT COMES AFTER IT -->
+<p id="first_paragraph"></p>
+
+<!-- HERE THE JAVASCRIPT FILE 'main.js' IS REFERENCED -->
+<script type="text/javascript" src="{{url_for('static',filename='main.js')}}"></script>
+</html>
