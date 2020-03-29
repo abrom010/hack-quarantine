@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="homepage.html">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Page</a>
@@ -40,39 +40,28 @@
 </div>
 
 
-
-
-<!--Start Landing Page Section-->
-<div class="landing">
-	<div class="home-wrap">
-		<div class="home-inner">
-		</div>
-	</div>
-</div>
-
-<div class="caption text-center">
-	<h1>Welcome to Queue Up!</h1>
-	<h3>Enter a Zip Code to find stores near your location:</h3>
-	<form>
-		<input type="text" id="zipcode" name="zipcode" value=""><br>
-	</form>
-	<a class="btn btn-outline-light btn-lg" href="storepage.html">Get Started</a>
-</div>
-
-
-
-
-
-
-
+<div id="map"></div>
+<script>
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 40.111966, lng: -75.210776},
+      zoom: 18
+    });
+  }
+</script>
 
 
 <!--- Script Source Files -->
 <script src="js/jquery-3.3.1.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QGPvA6uWSJVWABYg_JUp7pvwiQqauMY&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYXoO9zvTFGxtPxPk_tKBj5Aqwi9ttY0&callback=initMap"
+    async defer></script>
 <script src="bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
 <!--- End of Script Source Files -->
+
+
+
 
 </body>
 </html>

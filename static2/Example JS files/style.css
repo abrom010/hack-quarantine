@@ -1,9 +1,98 @@
 
 
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond|Montserrat|Quicksand&display=swap');
+
+body{
+  overflow-x:hidden;
+  font-family: 'Quicksand', sans-serif;
+  color: #17252A
+}
+
+
+/*Navbar CSS */
+
+.navbar{
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: .9rem;
+  letter-spacing: .1rem;
+  background-color: rgba(3, 22, 27, 0.8)!important;
+}
+
+.navbar-brand img{
+  height: 5rem;
+  margin-left:-50px!important;
+}
+
+.navbar-nav li{
+  padding-right: .7rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navbar-dark .navbar-nav .navbar-link{
+  color:white;
+  padding-top: .8rem;
+}
+
+.navbar-dark .navbar-nav .navbar-link.active,
+.navbar-dark .navbar-nav .navbar-link:hover{
+  color:#1EBBA3;
+}
+
+/*Landing Page CSS */
+.home-inner{
+  background-image: url(img/map.png); 
+}
+
+.caption{
+  width:100%;
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  z-index:1;
+  color:white;
+ 
+}
+
+.caption h1{
+  font-size: 3.8 rem;
+  font-weight: 700;
+  letter-spacing: .3rem;
+  text-shadow: .1rem .1rem .8rem #03161B;
+  padding-bottom: 1.6rem;
+}
 
 
 
-/*============= COURSE SECTION =============*/
+.caption h3{
+  font-style: 2rem;
+  text-shadow: .1rem .1rem .8rem #03161B;
+  padding-bottom: 1rem;
+}
+.caption form{
+  padding-bottom: 1.3rem;
+  border-width: medium;
+  border-radius: 0;
+}
+
+.bt-lg{
+  border-width: medium;
+  border-radius: 0;
+  padding: .6rem 1.3rem;
+  font-size: 1.1rem;
+}
+
+#map {
+  height: 100%;
+  top: 13%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 90%;
+  margin: 0;
+  padding: 0;
+}
+
 
 .narrow {
   width: 75%;
