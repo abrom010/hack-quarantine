@@ -21,7 +21,7 @@ def request():
         list = []
         db = mysql.connector.connect(host="localhost", user="root", passwd="root", db="hackathon")
         cur = db.cursor()
-        cur.execute("SELECT * FROM inStore")
+        cur.execute("SELECT grocery_id FROM groceryStores WHERE zip_code='27560';")
         for i in cur:
             list.append(i)
         return jsonify(list)

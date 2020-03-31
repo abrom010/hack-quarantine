@@ -1,25 +1,44 @@
 DROP TABLE queue;
 DROP TABLE inStore;
 DROP TABLE timeSpent;
+DROP TABLE groceryStores;
 
 CREATE TABLE queue (
 	ticket_id INT AUTO_INCREMENT PRIMARY KEY,
     cust_name VARCHAR(25) DEFAULT 'Walk-In',
     position INT NOT NULL,
     ticket_gen_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    phone_num VARCHAR(12) NOT NULL #'(555)-555-5555', could be unique but make not unique for revisiting store in same day scenario
+    phone_num VARCHAR(12) NOT NULL, #'(555)-555-5555', could be unique but make not unique for revisiting store in same day scenario
+    authentication VARCHAR(160) DEFAULT NULL #length determined by verification into string/sql storable value
 );
 
 CREATE TABLE inStore (	#used to track number of people in store
 	ticket_id INT PRIMARY KEY,
-    sign_in TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    cust_name VARCHAR(25),
+    sign_in TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    authentication VARCHAR(160)
 );
 
 CREATE TABLE timeSpent ( #used to track avg time spent in store for past MAXINSTORE customers
 	ticket_id INT PRIMARY KEY,
     sign_in TIME,
-    sign_out TIME, #needs to default to current time, not current_time()
+    sign_out TIME DEFAULT CURRENT_TIMESTAMP, #needs to default to current time, not current_time()
     tot_time INT
+);
+
+CREATE TABLE groceryStores ( #used to keep track of all grocery stores, login info
+	grocery_id VARCHAR(20) PRIMARY KEY, #something like zipcode + streename + storeName
+    store_name VARCHAR(30),
+    address VARCHAR(30), #doesnt include city, state, zip code
+    city VARCHAR(20),
+    state VARCHAR(2), #initials only
+    zip_code VARCHAR(5),
+    username VARCHAR(20),
+    email VARCHAR(30), #possibly not needed
+    passwd VARCHAR(64), #hashed value, might need a lot of chars
+	max_in_store INT DEFAULT 100,
+    push_back_penalty VARCHAR(10) DEFAULT "Function", #prob needs to be a function that takes number of times late to give how much person is pushed back
+	wait_leniency INT DEFAULT 300 #how long store is willing to wait for a no-show before penilizing, in seconds
 );
 
 -- EXAMPLES --
@@ -38,6 +57,10 @@ INSERT INTO inStore(ticket_id) VALUES(5);
 INSERT INTO inStore(ticket_id, sign_in) VALUES(6, '2020-03-29 19:03:34');
 
 INSERT INTO timeSpent(ticket_id, sign_in, sign_out) VALUES(4, '05:35:50', '06:00:00');
+
+INSERT INTO groceryStores(grocery_ID, store_name, zip_code) VALUES("534FoodLion", "Food Lion", "27560");
+INSERT INTO groceryStores(grocery_ID, store_name, zip_code) VALUES("634Kroger", "Kroger", "27560");
+INSERT INTO groceryStores(grocery_ID, store_name, zip_code) VALUES("634Aldi", "Aldi", "27555");
 
 
 UPDATE timeSpent SET tot_time = TIMESTAMPDIFF(SECOND, sign_in, sign_out)
