@@ -20,9 +20,9 @@ function httpGet(theUrl) {
 
 function initMap() {
   console.log('INIT')
-  var latlong = new google.maps.LatLng(-33.867, 151.195); //sydney
+  var latlong = new google.maps.LatLng(0, 0); //sydney
   var mapOptions = {
-      zoom: 8,
+      zoom: 3,
       center: latlong,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
@@ -53,37 +53,45 @@ function initMap() {
 }
 
 function codeAddress() {
-  let addresses = httpGet('/addresses')
+  let data = httpGet('/addresses')
+  addresses = JSON.parse(data)
   geocoder = new google.maps.Geocoder();
-  address = addresses[0] //this is doing [
-  console.log(address) // addresses is a string not a list
+  //address = addresses[0] //this is doing [
+  //console.log(address) // addresses is a string not a list
 
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      let place = results[0]
-      createMarker(place)
+  // geocoder.geocode( { 'address': address}, function(results, status) {
+  //   if (status == google.maps.GeocoderStatus.OK) {
+  //     let place = results[0]
+  //     createMarker(place)
 
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
+  //   } else {
+  //     alert('Geocode was not successful for the following reason: ' + status);
+  //   }
+  // });
 
-  // for(var i = 0; i < addresses.length; i++){
-  //   var address = addresses[i]
-  // // var address = "1600 Amphitheatre Parkway, Mountain View, CA" //document.getElementById('address').value;
-  //   sleep(10000).then(() => {
-  //     geocoder.geocode( { 'address': address}, function(results, status) {
-  //     if (status == google.maps.GeocoderStatus.OK) {
-  //       let place = results[0]
-  //       //map.setCenter(place.geometry.location);
-  //       createMarker(place)
+  for(var i = 0; i < addresses.length; i++){
+    var address = addresses[i]
+    if(address==='null'){
+    	console.log('NULL');
+    	continue;}
+    console.log(address)
+  // var address = "1600 Amphitheatre Parkway, Mountain View, CA" //document.getElementById('address').value;
+    sleep(5000).then(() => {
+      geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        let place = results[0]
+        //map.setCenter(place.geometry.location);
+        var marker = new google.maps.Marker({
+    		map: map,
+    		position: place.geometry.location
+  		});
 
-  //     } else {
-  //       alert('Geocode was not successful for the following reason: ' + status);
-  //     }
-  //     });
-  //   })
-  // }
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+      });
+    })
+  }
 }
 
 function createMarker(place) {

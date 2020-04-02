@@ -24,6 +24,7 @@ def addresses():
         cur.execute("SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores;")
         for i in cur:
             add.append(i[0])
+            print(i[0])
     return jsonify(add)
 
 # @application.route('/queue')
