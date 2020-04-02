@@ -54,7 +54,8 @@ function codeAddress() {
 
   let addresses = httpGet(url)
 
-  for(String address : addresses){
+  for(var i = 0; i < addresses.length(); i++){
+    var address = addresses[i]
   // var address = "1600 Amphitheatre Parkway, Mountain View, CA" //document.getElementById('address').value;
     geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': address}, function(results, status) {
