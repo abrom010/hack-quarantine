@@ -41,7 +41,21 @@ function initMap() {
 }
 
 function codeAddress() {
-  var address = "1704 Harris Houston Rd, Charlotte, NC, 27560" //document.getElementById('address').value;
+  let url = '/addresses'
+
+  // console.log("1")
+  function httpGet(theUrl)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.response;
+  }
+
+  let addresses = httpGet(url)
+  
+  for(String address in addresses):
+  // var address = "1600 Amphitheatre Parkway, Mountain View, CA" //document.getElementById('address').value;
   console.log(address)
   geocoder = new google.maps.Geocoder();;
   geocoder.geocode( { 'address': address}, function(results, status) {

@@ -49,6 +49,7 @@ CREATE TABLE groceryStores ( #used to keep track of all grocery stores, login in
 #DESCRIBE queue;	prints table columns with value types
 #TIMESTAMP format 'YYYY-MM-DD HH:MM:SS' 24HR format
 
+-- INSERTS --
 INSERT INTO queue(ticket_id, cust_name, position, ticket_gen_time, phone_num) VALUES(12, "Lindsay Lohan", 1, '2020-03-28 19:00:00', '555-555-5555');
 INSERT INTO queue(cust_name, position, phone_num) VALUES("Eric Andre", 2, '234-775-3262');
 INSERT INTO queue(cust_name, position, phone_num) VALUES("Marisol Garcia", 3, '657-231-6763');
@@ -58,10 +59,14 @@ INSERT INTO inStore(ticket_id, sign_in) VALUES(6, '2020-03-29 19:03:34');
 
 INSERT INTO timeSpent(ticket_id, sign_in, sign_out) VALUES(4, '05:35:50', '06:00:00');
 
-INSERT INTO groceryStores(grocery_ID, store_name, zip_code) VALUES("534FoodLion", "Food Lion", "27560");
+INSERT INTO groceryStores(grocery_ID, store_name, address, city, state, zip_code) VALUES("534FoodLion", "Food Lion", "8600 University City Blvd", "Charlotte", "NC", 28213);
+INSERT INTO groceryStores(grocery_ID, store_name, address, city, state, zip_code) VALUES("534HarrisTeet", "Harris Teeter", "1704 Harris Houston Rd", "Charlotte", "NC", 27560);
 INSERT INTO groceryStores(grocery_ID, store_name, zip_code) VALUES("634Kroger", "Kroger", "27560");
 INSERT INTO groceryStores(grocery_ID, store_name, zip_code) VALUES("634Aldi", "Aldi", "27555");
+-- --
 
+-- get full address -- 
+SELECT CONCAT(address, ", ", city, ", ", state, ", ", zip_code) AS FullAddress FROM groceryStores;
 
 UPDATE timeSpent SET tot_time = TIMESTAMPDIFF(SECOND, sign_in, sign_out)
 WHERE ticket_id = 4;
