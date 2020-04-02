@@ -5,31 +5,69 @@
 var map;
 var service;
 var infowindow;
+var geocoder;
 
 function initMap() {
-  var sydney = new google.maps.LatLng(-33.867, 151.195);
+  var latlong = new google.maps.LatLng(-33.867, 151.195); //sydney
+  var mapOptions = {
+      zoom: 8,
+      center: latlong,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
 
   infowindow = new google.maps.InfoWindow();
 
   map = new google.maps.Map(
-      document.getElementById('map'), {center: sydney, zoom: 15});
+      document.getElementById('map'), mapOptions);
+  codeAddress();
 
-  var request = {
-    query: 'Museum of Contemporary Art Australia',
-    fields: ['name', 'geometry'],
-  };
+  // var request = {
+  //   query: 'Museum of Contemporary Art Australia',
+  //   fields: ['name', 'geometry'],
+  // };
 
-  service = new google.maps.places.PlacesService(map);
 
-  service.findPlaceFromQuery(request, function(results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      for (var i = 0; i < results.length; i++) {
-        createMarker(results[i]);
+  // service = new google.maps.places.PlacesService(map);
+
+  // service.findPlaceFromQuery(request, function(results, status) {
+  //   if (status === google.maps.places.PlacesServiceStatus.OK) {
+  //     for (var i = 0; i < results.length; i++) {
+  //       createMarker(results[i]);
+  //     }
+
+  //     map.setCenter(results[0].geometry.location);
+  //   }
+  // });
+}
+
+function codeAddress() {
+  let url = '/addresses'
+
+  // console.log("1")
+  function httpGet(theUrl)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.response;
+  }
+
+  let addresses = httpGet(url)
+
+  for(String address in addresses):
+  // var address = "1600 Amphitheatre Parkway, Mountain View, CA" //document.getElementById('address').value;
+    geocoder = new google.maps.Geocoder();;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
       }
-
-      map.setCenter(results[0].geometry.location);
-    }
-  });
+    });
 }
 
 function createMarker(place) {
@@ -43,22 +81,3 @@ function createMarker(place) {
     infowindow.open(map, this);
   });
 }
-
-window.onload = function(){
-  let url = '/addresses'
-
-  // console.log("1")
-  function httpGet(theUrl)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.response;
-}
-
-let data = httpGet(url)
-
-console.log(data)
-document.getElementById("first_paragraph").innerHTML = data;
-
-};
