@@ -1,3 +1,4 @@
+CREATE DATABASE hackathon;
 DROP TABLE queue;
 DROP TABLE inStore;
 DROP TABLE timeSpent;

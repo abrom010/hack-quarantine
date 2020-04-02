@@ -4,7 +4,7 @@ import os
 import mysql.connector
 
 application = flask.Flask(__name__)
-db = mysql.connector.connect(host="localhost", user="root", passwd="root", db="hackathon")
+db = mysql.connector.connect(host="localhost", user="root", passwd="toor", db="hackathon")
 
  #WHEN URL IS http://nameofwebsite.com/ DO THIS
 @application.route('/')

@@ -7,6 +7,13 @@ var service;
 var infowindow;
 var geocoder;
 
+function httpGet(theUrl) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.response;
+  }
+
 function initMap() {
   var latlong = new google.maps.LatLng(-33.867, 151.195); //sydney
   var mapOptions = {
@@ -41,29 +48,16 @@ function initMap() {
 }
 
 function codeAddress() {
-  let url = '/addresses'
-
-  // console.log("1")
-  function httpGet(theUrl)
-  {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.response;
-  }
-
-  let addresses = httpGet(url)
+  let addresses = httpGet('/addresses')
+  geocoder = new google.maps.Geocoder();
 
   for(String address : addresses){
-  // var address = "1600 Amphitheatre Parkway, Mountain View, CA" //document.getElementById('address').value;
-    geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
+        let place = results[0]
+        //map.setCenter(place.geometry.location);
+        createMarker(place)
+
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
