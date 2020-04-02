@@ -7,6 +7,10 @@ var service;
 var infowindow;
 var geocoder;
 
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
 function httpGet(theUrl) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
@@ -15,6 +19,7 @@ function httpGet(theUrl) {
   }
 
 function initMap() {
+  console.log('INIT')
   var latlong = new google.maps.LatLng(-33.867, 151.195); //sydney
   var mapOptions = {
       zoom: 8,
@@ -50,19 +55,35 @@ function initMap() {
 function codeAddress() {
   let addresses = httpGet('/addresses')
   geocoder = new google.maps.Geocoder();
+  address = addresses[0] //this is doing [
+  console.log(address) // addresses is a string not a list
 
-  for(String address : addresses){
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        let place = results[0]
-        //map.setCenter(place.geometry.location);
-        createMarker(place)
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      let place = results[0]
+      createMarker(place)
 
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-  }
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+
+  // for(var i = 0; i < addresses.length; i++){
+  //   var address = addresses[i]
+  // // var address = "1600 Amphitheatre Parkway, Mountain View, CA" //document.getElementById('address').value;
+  //   sleep(10000).then(() => {
+  //     geocoder.geocode( { 'address': address}, function(results, status) {
+  //     if (status == google.maps.GeocoderStatus.OK) {
+  //       let place = results[0]
+  //       //map.setCenter(place.geometry.location);
+  //       createMarker(place)
+
+  //     } else {
+  //       alert('Geocode was not successful for the following reason: ' + status);
+  //     }
+  //     });
+  //   })
+  // }
 }
 
 function createMarker(place) {
