@@ -43,3 +43,22 @@ function createMarker(place) {
     infowindow.open(map, this);
   });
 }
+
+window.onload = function(){
+  let url = '/addresses'
+
+  // console.log("1")
+  function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.response;
+}
+
+let data = httpGet(url)
+
+console.log(data)
+document.getElementById("first_paragraph").innerHTML = data;
+
+};
