@@ -41,6 +41,21 @@ function initMap() {
 }
 
 function codeAddress() {
+
+    let url = '/addresses'
+
+    // console.log("1")
+    function httpGet(theUrl)
+    {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+      xmlHttp.send( null );
+      return xmlHttp.response;
+    }
+
+    let data = httpGet(url)
+    console.log(data)
+    
     var address = "1600 Amphitheatre Parkway, Mountain View, CA" //document.getElementById('address').value;
     console.log(address)
     geocoder = new google.maps.Geocoder();;
