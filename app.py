@@ -15,9 +15,9 @@ def main():
 def store():
     return flask.render_template('storepage.html')
 
-@application.route('/queue')
-def queue():
-    return flask.redirect('/store', code=302)
+# @application.route('/queue')
+# def queue():
+#     return flask.redirect('/store', code=302)
 
 @application.route('/request',methods=['GET'])
 def request():
