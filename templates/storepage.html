@@ -44,13 +44,11 @@
 <div id="address">1600 Amphitheatre Parkway, Mountain View, CA</div>
 
 <!--- Script Source Files -->
-<script type="text/javascript" src="{{url_for('static',filename='maps.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYXoO9zvTFGxtPxPk_tKBj5Aqwi9ttY0&callback=initMap" async defer></script>
 <script type="text/javascript" src="{{url_for('static',filename='js/jquery-3.3.1.min.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYXoO9zvTFGxtPxPk_tKBj5Aqwi9ttY0&callback=initMap"
-    async defer></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYXoO9zvTFGxtPxPk_tKBj5Aqwi9ttY0&libraries=places&callback=initMap" async defer></script>
 <script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js') }}"></script>
 <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
+<script type="text/javascript" src="{{url_for('static',filename='maps.js') }}"></script>
 <!--- End of Script Source Files -->
 
 
