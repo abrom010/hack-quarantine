@@ -54,9 +54,9 @@ function codeAddress() {
 
   let addresses = httpGet(url)
 
-  for(String address in addresses):
+  for(String address : addresses){
   // var address = "1600 Amphitheatre Parkway, Mountain View, CA" //document.getElementById('address').value;
-    geocoder = new google.maps.Geocoder();;
+    geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         map.setCenter(results[0].geometry.location);
@@ -68,6 +68,7 @@ function codeAddress() {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
+  }
 }
 
 function createMarker(place) {
