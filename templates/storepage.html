@@ -10,49 +10,20 @@
 </head>
 
 <body data-spy="scroll" data-target="#navbarResponsive">
+
 <!-- Start Home Section-->
-<div id="home">
+	
+	<input id="autocomplete" placeholder="Enter a city" type="text" />
 
-<!--Navigation-->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-	<a class="navbar-brand" href="#"><img src="static/img/logo.png"></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-    data-target="#navbarResponsive">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="homepage.html">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Page</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Page</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Page</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-</div>
-
-
-<div id="map"></div>
-<div id="address">1600 Amphitheatre Parkway, Mountain View, CA</div>
+	<div id="map"></div>
 
 <!--- Script Source Files -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYXoO9zvTFGxtPxPk_tKBj5Aqwi9ttY0&callback=initMap" async defer></script>
-<script type="text/javascript" src="{{url_for('static',filename='js/jquery-3.3.1.min.js') }}"></script>
-<script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js') }}"></script>
-<script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
-<script type="text/javascript" src="{{url_for('static',filename='maps.js') }}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYXoO9zvTFGxtPxPk_tKBj5Aqwi9ttY0&libraries=places&callback=initMap" async defer></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/jquery-3.3.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js') }}"></script>
+	<script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='maps.js') }}"></script>
 <!--- End of Script Source Files -->
-
-
-
 
 </body>
 </html>
