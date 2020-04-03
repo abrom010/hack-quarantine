@@ -35,6 +35,7 @@ function initMap() {
   addresses_to_markers();
 
   map.addListener('bounds_changed',search)
+  map.addListener('zoom_changed',search)
 
 }
 
@@ -52,12 +53,13 @@ function onPlaceChanged() {
 
 function search() {
         bounds = map.getBounds();
+        zoom = map.getZoom();
         
         for(var i = 0; i < markers.length; i++){
           marker = markers[i]
           console.log(marker)
           if(marker){
-            if(bounds.contains(marker.getPosition())){
+            if(bounds.contains(marker.getPosition()) && zoom > 5){
               marker.setMap(map)
               console.log("map set!")
             } else {
