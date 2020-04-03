@@ -1,25 +1,19 @@
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
 var map;
 var service;
 var infowindow;
 var geocoder;
+var autocomplete;
+var markers = [];
 
-const sleep = (milliseconds) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds))
-}
 
 function httpGet(theUrl) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.response;
-  }
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", theUrl, false );
+  xmlHttp.send( null );
+  return xmlHttp.response;
+}
 
 function initMap() {
-  console.log('INIT')
   var latlong = new google.maps.LatLng(0, 0);
   var mapOptions = {
       zoom: 3,
@@ -27,32 +21,52 @@ function initMap() {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
-  infowindow = new google.maps.InfoWindow();
-
   map = new google.maps.Map(
       document.getElementById('map'), mapOptions);
-  codeAddress();
 
-  // var request = {
-  //   query: 'Museum of Contemporary Art Australia',
-  //   fields: ['name', 'geometry'],
-  // };
+  autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+  autocomplete.addListener('place_changed', onPlaceChanged);
 
+  places = new google.maps.places.PlacesService(map);
 
-  // service = new google.maps.places.PlacesService(map);
+  addresses_to_markers();
 
-  // service.findPlaceFromQuery(request, function(results, status) {
-  //   if (status === google.maps.places.PlacesServiceStatus.OK) {
-  //     for (var i = 0; i < results.length; i++) {
-  //       createMarker(results[i]);
-  //     }
-
-  //     map.setCenter(results[0].geometry.location);
-  //   }
-  // });
+  map.addListener('bounds_changed',search)
+  map.addListener('zoom_changed',search)
 }
 
-function codeAddress() {
+function onPlaceChanged() {
+  console.log('place changed')
+  var place = autocomplete.getPlace();
+  if (place.geometry) {
+    map.panTo(place.geometry.location);
+    map.setZoom(10);
+    search();
+  } else {
+    document.getElementById('autocomplete').placeholder = 'Enter a city';
+  }
+}
+
+function search() {
+  bounds = map.getBounds();
+  zoom = map.getZoom();
+  
+  for(var i = 0; i < markers.length; i++){
+    marker = markers[i]
+    console.log(marker)
+    if(marker){
+      if(bounds.contains(marker.getPosition()) && zoom > 5){
+        marker.setMap(map)
+        console.log("map set!")
+      } else {
+        marker.setMap(null)
+        console.log("not work :(")
+      }
+    } else { console.log("not marker D:")};
+  }
+}
+
+function addresses_to_markers() {
   let data = httpGet('/addresses')
   addresses = JSON.parse(data)
   geocoder = new google.maps.Geocoder();
@@ -60,23 +74,22 @@ function codeAddress() {
   for(var i = 0; i < addresses.length; i++){
     var address = addresses[i]
     console.log(address)
-    // sleep(5000).then(() => {
       geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         let place = results[0]
-        createMarker(place)//.setMap(map);
+        markers.push(createMarker(place))
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        alert('Geocode was not successful for the following reason: ' + status)
       }
-      });
-    // })
+    });
   }
 }
 
 function createMarker(place) {
-  var marker = new google.maps.Marker({
-    map: map,
-    position: place.geometry.location
+  return new google.maps.Marker({
+    map: null,
+    position: place.geometry.location,
+    animation: google.maps.Animation.DROP
   });
 
   // google.maps.event.addListener(marker, 'click', function() {
