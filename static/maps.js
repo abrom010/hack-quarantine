@@ -33,6 +33,9 @@ function initMap() {
   places = new google.maps.places.PlacesService(map);
 
   addresses_to_markers();
+
+  map.addListener('bounds_changed',search)
+
 }
 
 function onPlaceChanged() {
@@ -58,9 +61,10 @@ function search() {
               marker.setMap(map)
               console.log("map set!")
             } else {
+              marker.setMap(null)
               console.log("not work :(")
             }
-          } else { console.log("not marker D:")}
+          } else { console.log("not marker D:")};
         }
 
         
