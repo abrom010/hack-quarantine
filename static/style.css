@@ -6,9 +6,12 @@ body{
   overflow-x:hidden;
   font-family: 'Quicksand', sans-serif;
   color: #17252A;
-  background-image: url('img/map.png');
+  background-color: #DDD
 }
 
+#indexBody{
+  background-image: url('img/map.png');
+}
 
 /*Navbar CSS */
 
