@@ -50,7 +50,7 @@ function onPlaceChanged() {
 function search() {
   bounds = map.getBounds();
   zoom = map.getZoom();
-  
+
   for(var i = 0; i < markers.length; i++){
     marker = markers[i]
     console.log(marker)

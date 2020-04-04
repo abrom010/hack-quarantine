@@ -1,0 +1,4 @@
+function genTicket()
+{
+  location = '/storeCust'
+}

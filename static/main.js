@@ -3,7 +3,7 @@
 function storePage()
 {
 // console.log("Hey")
-  location.replace('/store')
+  location = '/store'
 }
 // window.onload = function(){
 //   let text = "This text was made using Javascript. "

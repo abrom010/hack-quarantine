@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Get a Ticket</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body data-spy="scroll" data-target="#navbarResponsive">
+  <div id="home">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    	<a class="navbar-brand" href="#"><img src="static/img/logo.png"></a>
+    	<button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Page</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  </div>
+  <br>
+  <!--everything below needs css thru bootstrap. remove/change any id/class name in this section-->
+  <div id="storeInfo">
+    <h1 id="storeName">storename</h1>
+    <h3 id="storeAddress">address, city, state, zip code</h3> <!--address in 1st line, city state and zip in 2nd-->
+    <br><br>
+    <p class="queueTime">Current queue size: queuesize</p>
+    <p class="queueTime">Current wait time: waittime</p> <!--these 2 lines can be same line or 2 diff lines-->
+  </div>
+
+  <div id="genTicketBox">
+    <div class="custDetails">
+      <form action="/storeCust" method='POST'>
+        <label name="custName">Name:</label>
+        <input type="text" name="custName" id="custName">
+        <br>
+        <label name="numb">Phone Number: </label>
+        <input type="text" name="numb" id="numb">
+        <br>
+        <input type="submit" onclick="genTicket()" value="Generate Ticket">
+      </form>
+    </div>
+    <div class="custDetails">
+      <label name="ticket" id="ticketLabel">Ticket ID:</label>
+      <p name="ticket" id="ticket_ID"></p>
+      <br>
+      <label name="position" id="queuePos">Ticket ID:</label>
+      <p name="position" id="posInQueue"></p>
+      <br>
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript" src="{{ url_for('static', filename='ticketpage.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QGPvA6uWSJVWABYg_JUp7pvwiQqauMY&callback=initMap"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
