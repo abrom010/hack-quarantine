@@ -60,7 +60,7 @@ INSERT INTO inStore(ticket_id, sign_in) VALUES(6, '2020-03-29 19:03:34');
 
 INSERT INTO timeSpent(ticket_id, sign_in, sign_out) VALUES(4, '05:35:50', '06:00:00');
 
-INSERT INTO groceryStores(store_name, address, city, state, zip_code) VALUES("8600 University City Blvd", "Charlotte", "NC", 28213);
+INSERT INTO groceryStores(store_name, address, city, state, zip_code) VALUES("Food Lion", "8600 University City Blvd", "Charlotte", "NC", 28213);
 INSERT INTO groceryStores(store_name, address, city, state, zip_code) VALUES("Harris Teeter", "1704 Harris Houston Rd", "Charlotte", "NC", 27560);
 INSERT INTO groceryStores(store_name, zip_code) VALUES("Kroger", "27560");
 INSERT INTO groceryStores(store_name, zip_code) VALUES("Aldi", "27555");
