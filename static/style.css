@@ -44,9 +44,7 @@ body{
 }
 
 /*Landing Page CSS */
-/* body{
-  background-image: url('/static/img/client1.png') }});
-} */
+
 
 .caption{
   width:100%;
@@ -85,16 +83,16 @@ body{
   padding: .6rem 1.3rem;
   font-size: 1.1rem;
 }
-
+/* 
 #map {
   height: 100%;
 }
-/* Optional: Makes the sample page fill the window. */
+/* Optional: Makes the sample page fill the window. 
 html, body {
   height: 90%;
   margin: 0;
   padding: 0;
-}
+} */
 
 
 .narrow {
@@ -121,6 +119,73 @@ html, body {
   border-color: #189582;
   background-color: #189582;
   color: white;
+}
+
+
+
+
+/* Ticket Page CSS */
+#cover {
+  background-image: url('img/map.png');
+  align-items: center;
+  position: relative; 
+  max-height: 100%;
+}
+
+.storeInfo {
+  width:100%;
+  max-width: 100%;
+  position: absolute;
+  top: 20%;
+  z-index:1;
+  color:white;
+}
+.storeInfo p{
+  font-size: 24px;
+  font-style: 2rem;
+  text-shadow: .1rem .1rem .8rem #03161B;
+}
+.genTicketBox{
+  width:100%;
+  max-width: 30%;
+  position: absolute;
+  top: 58%;
+  z-index:1;
+}
+#storeName {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: .3rem;
+  text-shadow: .1rem .1rem .8rem #03161B;
+  padding-bottom: 1.6rem;
+}
+#storeAddress{
+  font-size: 30px;
+  font-style: 2rem;
+  text-shadow: .1rem .1rem .8rem #03161B;
+  padding-bottom: 1rem;
+}
+label{
+  text-align: left!important;
+}
+
+#cover-caption {
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top:60%;
+}
+
+form:before {
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.3);
+  z-index: -1;
+  border-radius: 10px;
 }
 
 
