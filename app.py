@@ -1,5 +1,6 @@
 import flask
 from flask import jsonify
+from flask import request
 import os
 import mysql.connector
 
@@ -12,35 +13,42 @@ def main():
     return flask.render_template('index.html')
 # ^^^ RETURNS index.html AFTER HAVING PROCESSED IT USING THE render_template() FUNCTION
 
-@application.route('/store')
+@application.route('/store/')
 def store():
     return flask.render_template('storepage.html')
 
-@application.route('/addresses',methods=['GET'])
+@application.route('/addresses/',methods=['GET'])
 def addresses():
     if flask.request.method == 'GET':
         add = []
+        id = []
         cur = db.cursor()
         cur.execute("SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores;")
-        for i in cur:
-            add.append(i[0])
-            print(i[0])
-    return jsonify(add)
+        for lyst in cur:
+            add.append(lyst[0])
+            # print({cur2[i][0]:cur[i][0]})
+        cur.execute("SELECT grocery_id FROM groceryStores;")
+        for lyst in cur:
+            id.append(lyst[0])
+        print(zip(id, add))
+    return jsonify(dict(zip(id, add)))
 
 @application.route('/ticket')
 def ticket():
     return flask.render_template('ticketpage.html')
 
-# @application.route('/storeCust', methods=['POST'])
-# def storeCust():
-#     if flask.request.method == 'POST':
-#         result = request.form
-#         tick = 20
-#         cust = "Sarah Wagner"
-#         position = 3
-#         phone = "929-699-5544"
-#         cur = db.cursor()
-#         cur.execute("INSERT INTO queue(ticket_id, cust_name, position, phone_num) VALUES(%s, %s, %s, %s, %s)", (tick, cust, pos, phone))
+@application.route('/storeCust', methods=['POST'])
+def storeCust():
+    if flask.request.method == 'POST':
+        custName = request.form["custName"]
+        numb = request.form["numb"]
+        # return custID, numb
+        cur = db.cursor()
+        cur.execute('''SELECT MAX(ticket_id), MAX(position) FROM queue''')
+        test = cur.fetchone()
+        cur.execute('''INSERT INTO queue (ticket_id, cust_name, position, phone_num) VALUES(%s, %s, %s, %s)''', (test[0] + 1, custName, test[1] + 1, numb))
+        db.commit()
+        return "done"
 
 # @application.route('/test/<string:input1>')
 # def test(input1):
