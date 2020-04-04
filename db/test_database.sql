@@ -28,7 +28,7 @@ CREATE TABLE timeSpent ( #used to track avg time spent in store for past MAXINST
 );
 
 CREATE TABLE groceryStores ( #used to keep track of all grocery stores, login info
-	grocery_id VARCHAR(20) PRIMARY KEY, #something like zipcode + streename + storeName
+	grocery_id INT AUTO_INCREMENT PRIMARY KEY, #something like zipcode + streename + storeName
     store_name VARCHAR(30),
     address VARCHAR(30), #doesnt include city, state, zip code
     city VARCHAR(20),
@@ -60,10 +60,10 @@ INSERT INTO inStore(ticket_id, sign_in) VALUES(6, '2020-03-29 19:03:34');
 
 INSERT INTO timeSpent(ticket_id, sign_in, sign_out) VALUES(4, '05:35:50', '06:00:00');
 
-INSERT INTO groceryStores(grocery_ID, store_name, address, city, state, zip_code) VALUES("534FoodLion", "Food Lion", "8600 University City Blvd", "Charlotte", "NC", 28213);
-INSERT INTO groceryStores(grocery_ID, store_name, address, city, state, zip_code) VALUES("534HarrisTeet", "Harris Teeter", "1704 Harris Houston Rd", "Charlotte", "NC", 27560);
-INSERT INTO groceryStores(grocery_ID, store_name, zip_code) VALUES("634Kroger", "Kroger", "27560");
-INSERT INTO groceryStores(grocery_ID, store_name, zip_code) VALUES("634Aldi", "Aldi", "27555");
+INSERT INTO groceryStores(store_name, address, city, state, zip_code) VALUES("8600 University City Blvd", "Charlotte", "NC", 28213);
+INSERT INTO groceryStores(store_name, address, city, state, zip_code) VALUES("Harris Teeter", "1704 Harris Houston Rd", "Charlotte", "NC", 27560);
+INSERT INTO groceryStores(store_name, zip_code) VALUES("Kroger", "27560");
+INSERT INTO groceryStores(store_name, zip_code) VALUES("Aldi", "27555");
 -- --
 
 -- get full address -- 
