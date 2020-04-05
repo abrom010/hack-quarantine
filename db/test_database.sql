@@ -49,7 +49,7 @@ CREATE TABLE groceryStores ( #used to keep track of all grocery stores, login in
 #TIMESTAMP format 'YYYY-MM-DD HH:MM:SS' 24HR format
 
 -- INSERTS --
-INSERT INTO queue(ticket_id, cust_name, position, ticket_gen_time, phone_num) VALUES(12, "Lindsay Lohan", 1, '2020-03-28 19:00:00', '555-555-5555');
+INSERT INTO queue(cust_name, position, ticket_gen_time, phone_num) VALUES("Lindsay Lohan", 1, '2020-03-28 19:00:00', '+15555555555');
 INSERT INTO queue(cust_name, position, phone_num) VALUES("Eric Andre", 2, '234-775-3262');
 INSERT INTO queue(cust_name, position, phone_num) VALUES("Marisol Garcia", 3, '657-231-6763');
 

@@ -9,7 +9,7 @@ import re
 
 application = flask.Flask(__name__)
 
-db = mysql.connector.connect(host="localhost", user="root", passwd="toor", db="hackathon")
+db = mysql.connector.connect(host="localhost", user="root", passwd="root", db="hackathon")
 
 account_sid = 'ACf50d76cba4344433156557d73e062105'
 auth_token = '5fd058e27df16f50cf47db3f4d4ce732'
