@@ -176,7 +176,7 @@ label{
   top:60%;
 }
 
-form:before {
+#textpage form:before {
   content: '';
   height: 100%;
   left: 0;
