@@ -16,16 +16,16 @@ CREATE TABLE queue (
 CREATE TABLE inStore (	#used to track number of people in store
 	ticket_id INT PRIMARY KEY,
     cust_name VARCHAR(25),
-    sign_in TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    authentication VARCHAR(160)
+    sign_in TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    -- authentication VARCHAR(160)
 );
 
-CREATE TABLE timeSpent ( #used to track avg time spent in store for past MAXINSTORE customers
-	ticket_id INT PRIMARY KEY,
-    sign_in TIME,
-    sign_out TIME DEFAULT CURRENT_TIMESTAMP, #needs to default to current time, not current_time()
-    tot_time INT
-);
+-- CREATE TABLE timeSpent ( #used to track avg time spent in store for past MAXINSTORE customers
+-- 	ticket_id INT PRIMARY KEY,
+--     sign_in TIME,
+--     sign_out TIME DEFAULT CURRENT_TIMESTAMP, #needs to default to current time, not current_time()
+--     tot_time INT
+-- );
 
 CREATE TABLE groceryStores ( #used to keep track of all grocery stores, login info
 	grocery_id INT AUTO_INCREMENT PRIMARY KEY, #something like zipcode + streename + storeName
@@ -37,9 +37,7 @@ CREATE TABLE groceryStores ( #used to keep track of all grocery stores, login in
     username VARCHAR(20),
     email VARCHAR(30), #possibly not needed
     passwd VARCHAR(64), #hashed value, might need a lot of chars
-	max_in_store INT DEFAULT 100,
-    push_back_penalty VARCHAR(10) DEFAULT "Function", #prob needs to be a function that takes number of times late to give how much person is pushed back
-	wait_leniency INT DEFAULT 300 #how long store is willing to wait for a no-show before penilizing, in seconds
+	max_in_store INT DEFAULT 100
 );
 
 -- EXAMPLES --

@@ -51,24 +51,24 @@
               <div class="row text-white">
                   <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
                       <div class="px-2">
-                          <form action="" class="justify-content-center">
+                          <form action="/storeCust" method="POST" class="justify-content-center">
                               <div class="form-group">
                                   <label class="sr-only">Name</label>
-                                  <input type="text" class="form-control" placeholder="Enter Name Here">
+                                  <input type="text" class="form-control" name="custName" placeholder="Enter Name Here">
                               </div>
                               <div class="form-group">
                                   <label class="sr-only">Phone Number</label>
-                                  <input type="text" class="form-control" placeholder="(215)-555-5555">
+                                  <input type="text" class="form-control" name="numb" placeholder="(215)-555-5555">
                               </div>
-                              <button type="submit" class="btn btn-primary btn-lg">Launch</button>
+                              <input type="submit" class="btn btn-primary btn-lg" value="Generate Ticket"></button>
                               <div class="form-group">
                                 <label class="sr-only">Ticket ID</label>
                                 <input type="text" class="form-control" placeholder="Ticket Number Appears Here">
-                            </div>
-                            <div class="form-group">
-                              <label class="sr-only">Position in Queue</label>
-                              <input type="text" class="form-control" placeholder="Ticket Number Appears Here">
-                          </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="sr-only">Position in Queue</label>
+                                <input type="text" class="form-control" placeholder="Ticket Number Appears Here">
+                              </div>
                           </form>
                       </div>
                   </div>
@@ -105,10 +105,10 @@
           <label name="numb">Phone Number: </label>
           <input type="text" name="numb" id="numb">
           <br>
-          
+
         </form>
       </div> -->
-      
+
 </div>
 </body>
 
