@@ -58,11 +58,10 @@ def storeCust():
         cur.execute('''INSERT INTO queue (ticket_id, cust_name, position, phone_num) VALUES(%s, %s, %s, %s)''', (test[0] + 1, custName, test[1] + 1, numb))
         db.commit()
         meesage = client.messages.create(
-            body = "www.google.com",
+            body = "https://www.google.com",
             messaging_service_sid = "MGc4338215ff683f8a462df06e206eb8fb",
             to = numb
         )
-
         print(numb)
         return "Done"
 

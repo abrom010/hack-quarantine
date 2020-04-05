@@ -6,7 +6,6 @@ var autocomplete;
 var markers = [];
 
 function httpGet(theUrl) {
-<<<<<<< Updated upstream
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open( "GET", theUrl, false );
   xmlHttp.send( null );
@@ -14,34 +13,16 @@ function httpGet(theUrl) {
 }
 
 function initMap() {
-=======
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.response;
-}
-
-
-
-function initAutocomplete() {
-  console.log('INIT')
->>>>>>> Stashed changes
   var latlong = new google.maps.LatLng(0, 0);
   var mapOptions = {
       zoom: 3,
       center: latlong,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-<<<<<<< Updated upstream
-=======
-  
-  infowindow = new google.maps.InfoWindow();
->>>>>>> Stashed changes
 
   map = new google.maps.Map(
       document.getElementById('map'), mapOptions);
 
-<<<<<<< Updated upstream
   autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
   autocomplete.addListener('place_changed', onPlaceChanged);
 
@@ -82,24 +63,6 @@ function search() {
 }
 
 function addresses_to_markers() {
-=======
-
-  // Create the search box and link it to the UI element.
-  var input = document.getElementById('pac-input');
-  var searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-  // Bias the SearchBox results towards current map's viewport.
-  map.addListener('bounds_changed', function() {
-    searchBox.setBounds(map.getBounds());
-  });
-
-}
-
-
-
-function codeAddress() {
->>>>>>> Stashed changes
   let data = httpGet('/addresses')
   addresses = JSON.parse(data)
   geocoder = new google.maps.Geocoder();
@@ -152,7 +115,7 @@ function addResult(result, i) {
         var results = document.getElementById('results');
 
         var tr = document.createElement('tr');
-        
+
         tr.onclick = function() {
           google.maps.event.trigger(markers[i], 'click');
         };
