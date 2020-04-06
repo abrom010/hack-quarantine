@@ -30,18 +30,18 @@ def store():
 @application.route('/addresses/',methods=['GET'])
 def addresses():
     if flask.request.method == 'GET':
-        add = []
-        id = []
+        addresses = []
+        names = []
         cur = db.cursor()
         cur.execute("SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores;")
         for lyst in cur:
-            add.append(lyst[0])
+            addresses.append(lyst[0])
             # print({cur2[i][0]:cur[i][0]})
-        cur.execute("SELECT grocery_id FROM groceryStores;")
+        cur.execute("SELECT store_name FROM groceryStores;")
         for lyst in cur:
-            id.append(lyst[0])
-        print(dict(zip(id, add)))
-    return jsonify(dict(zip(id, add)))
+            names.append(lyst[0])
+        #print(dict(zip(id, add)))
+    return jsonify(dict(zip(names, addresses)))
 
 @application.route('/ticket')
 def ticket():
