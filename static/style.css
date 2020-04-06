@@ -137,7 +137,7 @@ html, body {
 #cover {
   background-image: url('img/map.png');
   align-items: center;
-  position: relative; 
+  position: relative;
   max-height: 100%;
 }
 
@@ -202,6 +202,22 @@ label{
   border-radius: 10px;
 }
 
+.table {
+  color:white;
+  margin: auto;
+  width: 50% !important;
+}
+
+.table th {
+   text-align: center;
+}
+
+#table-area{
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top:40%;
+}
 /* End of Ticket Page CSS */
 
 

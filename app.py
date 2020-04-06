@@ -80,6 +80,10 @@ def storeCust():
         # print(numb)
         return flask.render_template('index.html')
 
+@application.route('/position')
+def position():
+    return flask.render_template('position.html')
+
 # Format the phone number for Twilio
 def formatNumb(num):
     print(num)
