@@ -1,6 +1,7 @@
 import flask
 from flask import jsonify
 from flask import request
+from flask import flash
 import os
 import mysql.connector
 from twilio.rest import Client
@@ -8,8 +9,9 @@ from twilio.twiml.messaging_response import MessagingResponse
 import re
 
 application = flask.Flask(__name__)
+application.secret_key = 'secret'
 
-db = mysql.connector.connect(host="localhost", user="root", passwd="root", db="hackathon")
+db = mysql.connector.connect(host="localhost", user="root", passwd="toor", db="hackathon")
 
 account_sid = 'ACf50d76cba4344433156557d73e062105'
 auth_token = '5fd058e27df16f50cf47db3f4d4ce732'
@@ -38,7 +40,7 @@ def addresses():
         cur.execute("SELECT grocery_id FROM groceryStores;")
         for lyst in cur:
             id.append(lyst[0])
-        print(zip(id, add))
+        print(dict(zip(id, add)))
     return jsonify(dict(zip(id, add)))
 
 @application.route('/ticket')
@@ -65,7 +67,9 @@ def storeCust():
             messaging_service_sid = "MGc4338215ff683f8a462df06e206eb8fb",
             to = numb
         )
-        return "Done"
+        print(numb)
+        flash('Check your phone for your check-in code!')
+        return flask.render_template('index.html')
 
 def formatNumb(num):
     print(num)
