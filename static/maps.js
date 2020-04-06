@@ -12,6 +12,13 @@ function httpGet(theUrl) {
   return xmlHttp.response;
 }
 
+function httpPost(theUrl,data) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("POST", theUrl, false );
+  xmlHttp.send( data );
+  return xmlHttp.response;
+}
+
 function initMap() {
   var latlong = new google.maps.LatLng(0, 0);
   var mapOptions = {
@@ -65,31 +72,18 @@ function search() {
 function addresses_to_markers() {
   let data = httpGet('/addresses')
   addresses = JSON.parse(data)
+  keys = Object.keys(addresses)
+
   geocoder = new google.maps.Geocoder();
 
-  for(var i = 0; i < addresses.length; i++){
-    var address = addresses[i]
-    var name;
-    console.log(address)
-
-    var request = {
-          query: address,
-          fields: ['name'],
-        };
-    service = new google.maps.places.PlacesService(map);
-
-    service.findPlaceFromQuery(request, function(results, status) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-          name = results[i].name
-        }
-      }
-    });
+  for(var i = 0; i<keys.length; i++){
+    var address = addresses[keys[i]]
+    var value = keys[i]
 
     geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       let place = results[0]
-      markers.push(createMarker(place,name))
+      markers.push(createMarker(place,value))
     } else {
       alert('Geocode was not successful for the following reason: ' + status)
     }
@@ -97,12 +91,13 @@ function addresses_to_markers() {
   }
 }
 
-function createMarker(place,name) {
+function createMarker(place,id) {
+  var name = httpPost('/getName/',id);
   return new google.maps.Marker({
     map: null,
     position: place.geometry.location,
     animation: google.maps.Animation.DROP,
-    label: name
+    label:name
   });
 
   // google.maps.event.addListener(marker, 'click', function() {
