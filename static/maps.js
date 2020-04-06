@@ -61,6 +61,7 @@ function search() {
     marker = markers[i]
     if(marker){
       if(bounds.contains(marker.getPosition()) && zoom > 5){
+        // console.log(marker.title)
         marker.setMap(map)
       } else {
         marker.setMap(null)
@@ -77,13 +78,13 @@ function addresses_to_markers() {
   geocoder = new google.maps.Geocoder();
 
   for(var i = 0; i<keys.length; i++){
-    var address = addresses[keys[i]]
-    var value = keys[i]
+    let address = addresses[keys[i]]
+    let name = keys[i]
 
     geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       let place = results[0]
-      markers.push(createMarker(place,value))
+      markers.push(createMarker(place,name))
     } else {
       alert('Geocode was not successful for the following reason: ' + status)
     }
@@ -91,13 +92,12 @@ function addresses_to_markers() {
   }
 }
 
-function createMarker(place,id) {
-  var name = httpPost('/getName/',id);
+function createMarker(place,name) {
   return new google.maps.Marker({
     map: null,
     position: place.geometry.location,
     animation: google.maps.Animation.DROP,
-    label:name
+    title:name
   });
 
   // google.maps.event.addListener(marker, 'click', function() {
@@ -106,18 +106,18 @@ function createMarker(place,id) {
   // });
 }
 
-function addResult(result, i) {
-        var results = document.getElementById('results');
+// function addResult(result, i) {
+//         var results = document.getElementById('results');
 
-        var tr = document.createElement('tr');
+//         var tr = document.createElement('tr');
 
-        tr.onclick = function() {
-          google.maps.event.trigger(markers[i], 'click');
-        };
+//         tr.onclick = function() {
+//           google.maps.event.trigger(markers[i], 'click');
+//         };
 
-        var nameTd = document.createElement('td');
-        var name = document.createTextNode(result.name);
-        nameTd.appendChild(name);
-        tr.appendChild(nameTd);
-        results.appendChild(tr);
-      }
+//         var nameTd = document.createElement('td');
+//         var name = document.createTextNode(result.name);
+//         nameTd.appendChild(name);
+//         tr.appendChild(nameTd);
+//         results.appendChild(tr);
+//       }
