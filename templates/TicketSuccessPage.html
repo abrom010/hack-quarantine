@@ -40,16 +40,14 @@
 <!-- End of Navigation and logo HTML-->
 
   <br>
-<!-- Store Info from Map Section -->
+<!-- Thank you text Section -->
   <div class="text-center">
     <div class="storeInfo">
-      <h1 id="storeName">Store Name</h1>
-      <p id="storeAddress">123 Street Road<br>
-        City, State, 12345</p> <!--address in 1st line, city state and zip in 2nd-->
-      <p class="queueTime">Current Queue Size: Size</p>
-      <p class="queueTime">Current Wait Time: Time</p> <!--these 2 lines can be same line or 2 diff lines-->
+      <h1 id="storeName">Thank you for using Queue Up!</h1>
+      <p id="storeAddress">Check your phone for your code!<br>
+        It will be sent to you in a few moments...</p> 
     </div>
-<!-- End of Store Info from Map Section-->
+<!-- End of thank you text Section-->
 
 <!-- Beginning of User Info forms and Submit button -->
     <section id="cover" class="min-vh-100">
@@ -59,16 +57,7 @@
                   <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
                       <div class="px-2">
                           <form action="/storeCust" method="POST" class="justify-content-center">
-                              <div class="form-group">
-                                  <label class="sr-only">Name</label>
-                                  <input type="text" class="form-control" name="custName" placeholder="Enter Name Here">
-                              </div>
-                              <div class="form-group">
-                                  <label class="sr-only">Phone Number</label>
-                                  <input type="tel" class="form-control" name="numb" placeholder="Ex: 215-555-5555" pattern="^\d{3}-\d{3}-\d{4}$" required>
-                              </div>
-                              <input type="submit" class="btn btn-primary btn-lg" value="Generate Ticket"></button>
-                              <div class="form-group"></div>
+                              <input type="submit" class="btn btn-primary btn-lg" value="Return to Start"></button>
                           </form>
                       </div>
                   </div>
