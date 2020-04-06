@@ -4,18 +4,14 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Queue Up</title>
-  <!-- <style></style> -->
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-  <!-- <link rel="stylesheet" href="static/style.css"> -->
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-	<!-- <link rel="stylesheet" href="css/fixed.css"> -->
 </head>
 
 <body data-spy="scroll" data-target="#navbarResponsive" id="indexBody">
-<!-- Start Home Section-->
 <div id="home">
 
-<!--Navigation-->
+<!--Start Navigation and Logo HTML-->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 	<a class="navbar-brand" href="#"><img src="static/img/logo.png"></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -40,23 +36,15 @@
     </div>
 </nav>
 </div>
+<!-- End of Navigation and logo HTML -->
 
-<!--Start Landing Page Section-->
-<!--Start Landing Page Section-->
-<div class="landing">
-	<div class="home-wrap">
-		<div class="home-inner">
-		</div>
-	</div>
-</div>
-
+<!-- Start of Center Page Text and start button-->
 <div class="caption text-center">
 	<h1>Welcome to Queue Up!</h1>
 	<h3>Find Your Local Grocery Store to Queue Up In!</h3>
-	
 	<a class="btn btn-outline-light btn-lg" onclick="storePage()">Get Started</a>
 </div>
-<!-- <button onclick="storePage()">Hey</button> -->
+<!-- End of center page text and start button-->
 
 <!--- Script Source Files -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
