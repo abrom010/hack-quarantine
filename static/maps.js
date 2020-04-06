@@ -61,7 +61,7 @@ function search() {
     marker = markers[i]
     if(marker){
       if(bounds.contains(marker.getPosition()) && zoom > 5){
-        console.log(marker.title)
+        // console.log(marker.title)
         marker.setMap(map)
       } else {
         marker.setMap(null)

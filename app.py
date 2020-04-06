@@ -53,7 +53,7 @@ def ticket():
     return flask.render_template('ticketpage.html')
 
 # Generates the user to database, when they enter Name and Phone number on ticketpage.
-# Then texts them the code and returns them to 
+# Then texts them the code and returns them to
 @application.route('/storeCust', methods=['POST'])
 def storeCust():
     if flask.request.method == 'POST':
