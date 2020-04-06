@@ -1,4 +1,4 @@
-
+/*All pages CSS */
 
 @import url('https://fonts.googleapis.com/css?family=EB+Garamond|Montserrat|Quicksand&display=swap');
 
@@ -8,12 +8,17 @@ body{
   color: #17252A;
   background-color: #DDD
 }
+/* End of all pages CSS */
+
+/* Index Page Only CSS */
 
 #indexBody{
   background-image: url('img/map.png');
 }
 
-/*Navbar CSS */
+/* End of Index page CSS */
+
+/* Start of navbar CSS */
 
 .navbar{
   text-transform: uppercase;
@@ -43,8 +48,9 @@ body{
   color:#1EBBA3;
 }
 
-/*Landing Page CSS */
+/* End of Navbar CSS */
 
+/* Text, buttons and title CSS on index, ticketpage */
 
 .caption{
   width:100%;
@@ -53,7 +59,6 @@ body{
   top: 50%;
   z-index:1;
   color:white;
-
 }
 
 .caption h1{
@@ -63,8 +68,6 @@ body{
   text-shadow: .1rem .1rem .8rem #03161B;
   padding-bottom: 1.6rem;
 }
-
-
 
 .caption h3{
   font-style: 2rem;
@@ -83,26 +86,6 @@ body{
   padding: .6rem 1.3rem;
   font-size: 1.1rem;
 }
-
-#map {
-  height: 100%;
-}
-/* Optional: Makes the sample page fill the window. */
-html, body {
-  height: 90%;
-  margin: 0;
-  padding: 0;
-}
-
-
-.narrow {
-  width: 75%;
-  margin: 1.5rem auto;
-  padding-top: 2rem;
-}
-.narrow h1 {
-    font-size: 2.4rem;
-  }
 .btn-secondary {
   border-width: medium;
   border-radius: 0;
@@ -121,10 +104,36 @@ html, body {
   color: white;
 }
 
+/* End of Text, buttons and title CSS on index, ticketpage */
 
+/* Start of Map CSS */
 
+#map {
+  height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 90%;
+  margin: 0;
+  padding: 0;
+}
 
-/* Ticket Page CSS */
+/* End of Map CSS */
+
+/* Etc CSS */
+.narrow {
+  width: 75%;
+  margin: 1.5rem auto;
+  padding-top: 2rem;
+}
+.narrow h1 {
+    font-size: 2.4rem;
+  }
+
+/* End of Etc CSS */
+
+/* Start Ticket Page CSS */
+
 #cover {
   background-image: url('img/map.png');
   align-items: center;
@@ -140,11 +149,13 @@ html, body {
   z-index:1;
   color:white;
 }
+
 .storeInfo p{
   font-size: 24px;
   font-style: 2rem;
   text-shadow: .1rem .1rem .8rem #03161B;
 }
+
 .genTicketBox{
   width:100%;
   max-width: 30%;
@@ -152,6 +163,7 @@ html, body {
   top: 58%;
   z-index:1;
 }
+
 #storeName {
   font-size: 48px;
   font-weight: 700;
@@ -159,12 +171,14 @@ html, body {
   text-shadow: .1rem .1rem .8rem #03161B;
   padding-bottom: 1.6rem;
 }
+
 #storeAddress{
   font-size: 30px;
   font-style: 2rem;
   text-shadow: .1rem .1rem .8rem #03161B;
   padding-bottom: 1rem;
 }
+
 label{
   text-align: left!important;
 }
@@ -187,6 +201,9 @@ label{
   z-index: -1;
   border-radius: 10px;
 }
+
+/* End of Ticket Page CSS */
+
 
 
 /*============ BOOTSTRAP BREAK POINTS:
