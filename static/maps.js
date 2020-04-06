@@ -1,6 +1,6 @@
 var map;
 var service;
-var infowindow;
+var infoWindow;
 var geocoder;
 var autocomplete;
 var markers = [];
@@ -39,6 +39,10 @@ function initMap() {
 
   map.addListener('bounds_changed',search)
   map.addListener('zoom_changed',search)
+
+  infoWindow = new google.maps.InfoWindow({
+      content: document.getElementById('info-content')
+  });
 }
 
 function onPlaceChanged() {
@@ -58,16 +62,25 @@ function search() {
   zoom = map.getZoom();
 
   for(var i = 0; i < markers.length; i++){
-    marker = markers[i]
+    let marker = markers[i]
+
     if(marker){
       if(bounds.contains(marker.getPosition()) && zoom > 5){
-        console.log(marker.title)
         marker.setMap(map)
       } else {
         marker.setMap(null)
       }
     }
   }
+}
+
+function openWindow(){
+  marker = this
+  document.getElementById("title").innerHTML = marker.title;
+  document.getElementById('address').innerHTML = marker.address;
+  document.getElementById('link').innerHTML = marker.link;
+
+  infoWindow.open(map,marker)
 }
 
 function addresses_to_markers() {
@@ -84,7 +97,7 @@ function addresses_to_markers() {
     geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       let place = results[0]
-      markers.push(createMarker(place,name))
+      markers.push(createMarker(place,name,address))
     } else {
       alert('Geocode was not successful for the following reason: ' + status)
     }
@@ -92,13 +105,20 @@ function addresses_to_markers() {
   }
 }
 
-function createMarker(place,name) {
-  return new google.maps.Marker({
+function createMarker(place,name,address) {
+  let marker = new google.maps.Marker({
     map: null,
     position: place.geometry.location,
     animation: google.maps.Animation.DROP,
-    title:name
+    label:name[0],
+
+    title:name,
+    link:'http://link.com',
+    address:address,
+
   });
+  google.maps.event.addListener(marker, 'click', openWindow);
+  return marker
 
   // google.maps.event.addListener(marker, 'click', function() {
   //   infowindow.setContent(place.name);
@@ -121,3 +141,6 @@ function createMarker(place,name) {
 //         tr.appendChild(nameTd);
 //         results.appendChild(tr);
 //       }
+// $(document).ready(function () {
+// google.maps.event.addDomListener(window, 'load', initMap);
+// });
