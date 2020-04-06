@@ -1,6 +1,7 @@
 import flask
 from flask import jsonify
 from flask import request
+from flask import flash
 import os
 import mysql.connector
 from twilio.rest import Client
@@ -8,6 +9,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 import re
 
 application = flask.Flask(__name__)
+application.secret_key = 'secret'
 
 db = mysql.connector.connect(host="localhost", user="root", passwd="root", db="hackathon")
 
@@ -63,7 +65,8 @@ def storeCust():
             to = numb
         )
         print(numb)
-        return "Done"
+        flash('Check your phone for your check-in code!')
+        return flask.render_template('index.html')
 
 def formatNumb(num):
     print(num)
