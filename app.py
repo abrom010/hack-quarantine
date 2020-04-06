@@ -9,7 +9,7 @@ import re
 
 application = flask.Flask(__name__)
 
-db = mysql.connector.connect(host="localhost", user="root", passwd="root", db="hackathon")
+db = mysql.connector.connect(host="localhost", user="root", passwd="toor", db="hackathon")
 
 account_sid = 'ACf50d76cba4344433156557d73e062105'
 auth_token = '5fd058e27df16f50cf47db3f4d4ce732'
@@ -38,7 +38,7 @@ def addresses():
         cur.execute("SELECT grocery_id FROM groceryStores;")
         for lyst in cur:
             id.append(lyst[0])
-        print(zip(id, add))
+        print(dict(zip(id, add)))
     return jsonify(dict(zip(id, add)))
 
 @application.route('/ticket')
