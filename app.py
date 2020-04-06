@@ -17,11 +17,9 @@ account_sid = 'ACf50d76cba4344433156557d73e062105'
 auth_token = '5fd058e27df16f50cf47db3f4d4ce732'
 client = Client(account_sid, auth_token)
 
- #WHEN URL IS http://nameofwebsite.com/ DO THIS
 @application.route('/')
 def main():
     return flask.render_template('index.html')
-# ^^^ RETURNS index.html AFTER HAVING PROCESSED IT USING THE render_template() FUNCTION
 
 @application.route('/store/')
 def store():
