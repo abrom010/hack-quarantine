@@ -1,4 +1,0 @@
-function genTicket()
-{
-  location = '/storeCust'
-}
