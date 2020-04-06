@@ -75,7 +75,7 @@ def storeCust():
             to = numb
         )
         flash('Check your phone for your check-in code!')
-        print(numb)
+        # print(numb)
         return flask.render_template('index.html')
 
 # Format the phone number for Twilio
