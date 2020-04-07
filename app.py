@@ -32,7 +32,7 @@ def store():
     return flask.render_template('storepage.html')
 
 # Generates list of addresses for Google Maps API, happens on the storepage HTML
-@application.route('/addresses/',methods=['GET'])
+@application.route('/ids/',methods=['GET'])
 def addresses():
     if flask.request.method == 'GET':
         addresses = []
@@ -80,6 +80,22 @@ def storeCust():
         # print(numb)
         return flask.render_template('TicketSuccessPage.html')
 
+@application.route('/address', methods=['POST'])
+def storeAddress():
+    if flask.request.method == 'POST':
+        groceryID = request.form["groceryID"]
+        cur = db.cursor()
+        address = cur.execute("SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores WHERE grocery_id = %s;", (groceryID))
+        return address
+
+@application.route('/name', methods=['POST'])
+def storeName():
+    if flask.request.method == 'POST':
+        groceryID = request.form["groceryID"]
+        cur = db.cursor()
+        name = cur.execute("SELECT store_name FROM groceryStores WHERE grocery_id = %s;", (groceryID))
+        return name
+        
 @application.route('/position')
 def position():
     return flask.render_template('position.html')
