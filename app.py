@@ -44,7 +44,7 @@ def addresses():
         cur.execute("SELECT grocery_id FROM groceryStores;")
         for lyst in cur:
             ids.append(lyst[0])
-    	return jsonify(ids)
+        return jsonify(ids)
 
 # Route to the ticketpage
 @application.route('/ticket')
