@@ -1,4 +1,4 @@
-wvar map;
+var map;
 var service;
 var infoWindow;
 var geocoder;
