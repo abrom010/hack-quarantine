@@ -78,6 +78,22 @@ def storeCust():
         # print(numb)
         return flask.render_template('TicketSuccessPage.html')
 
+@application.route('/address', methods=['POST'])
+def storeAddress():
+    if flask.request.method == 'POST':
+        groceryID = request.form["groceryID"]
+        cur = db.cursor()
+        address = cur.execute("SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores WHERE grocery_id = %s;", (groceryID))
+        return address
+
+@application.route('/name', methods=['POST'])
+def storeName():
+    if flask.request.method == 'POST':
+        groceryID = request.form["groceryID"]
+        cur = db.cursor()
+        name = cur.execute("SELECT store_name FROM groceryStores WHERE grocery_id = %s;", (groceryID))
+        return name
+        
 @application.route('/position')
 def position():
     return flask.render_template('position.html')
