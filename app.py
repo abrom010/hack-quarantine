@@ -84,6 +84,16 @@ def storeCust():
 def position():
     return flask.render_template('position.html')
 
+@application.route('/populateTable', methods=['GET'])
+def populateTable():
+    if flask.request.method == 'GET':
+        name = []
+        cur = db.cursor()
+        cur.execute('''SELECT cust_name FROM queue''')
+        for i in cur:
+            name.append(i[0])
+        return jsonify(name)
+
 # Format the phone number for Twilio
 def formatNumb(num):
     print(num)
