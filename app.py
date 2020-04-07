@@ -14,7 +14,7 @@ application = flask.Flask(__name__)
 application.secret_key = 'secret'
 
 # Connect to database
-db = mysql.connector.connect(host="localhost", user="root", passwd="root", db="hackathon")
+db = mysql.connector.connect(host="35.225.208.225", user="Aaron", passwd="1AsrzsrGJk0l1uEa", db="hackathon")
 
 # Twilio SID Info
 account_sid = 'ACf50d76cba4344433156557d73e062105'
@@ -52,6 +52,27 @@ def addresses():
 @application.route('/ticket')
 def ticket():
     return flask.render_template('ticketpage.html')
+
+# Get store name, add, csz to populate ticketpage.html
+@application.route('/storeData')
+def storeData():
+    if flask.request.method == 'GET':
+        grocID = 3
+        result = []
+        cur = db.cursor()
+        cur.execute('''SELECT store_name, address, city, state, zip_code FROM groceryStores WHERE grocery_id = 3;''', (grocID))
+        for i in cur:
+            result.append(i)
+        return jsonify(result)
+
+# Get queue size to populate ticketpage.html
+@application.route('/getSize')
+def getSize():
+    if flask.request.method == 'GET':
+        cur = db.cursor()
+        cur.execute('''SELECT MAX(position) FROM queue''')
+        result = cur.fetchone()
+        return jsonify(result)
 
 # Generates the user to database, when they enter Name and Phone number on ticketpage.
 # Then texts them the code and sends them to TicketSuccessPage
