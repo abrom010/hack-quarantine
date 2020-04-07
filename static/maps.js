@@ -1,4 +1,4 @@
-var map;
+wvar map;
 var service;
 var infoWindow;
 var geocoder;
@@ -94,7 +94,7 @@ function addresses_to_markers() {
     let address = addresses[keys[i]]
     let name = keys[i]
 
-    geocoder.geocode( { 'address': address}, function(results, status) {
+    geocoder.geocode( { 'address': address}, (results, status) =>{
     if (status == google.maps.GeocoderStatus.OK) {
       let place = results[0]
       markers.push(createMarker(place,name,address))
