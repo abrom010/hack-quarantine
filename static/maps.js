@@ -43,6 +43,12 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow({
       content: document.getElementById('info-content')
   });
+
+  google.maps.event.addListener(infoWindow,'closeclick',function(){
+   infoWindow = new google.maps.InfoWindow({
+      content: document.getElementById('info-content')
+  });
+});
 }
 
 function onPlaceChanged() {
@@ -84,15 +90,16 @@ function openWindow(){
 }
 
 function addresses_to_markers() {
-  let data = httpGet('/addresses')
-  addresses = JSON.parse(data)
-  keys = Object.keys(addresses)
+  let data = httpGet('/ids')
+  ids = JSON.parse(data)
 
   geocoder = new google.maps.Geocoder();
 
-  for(var i = 0; i<keys.length; i++){
-    let address = addresses[keys[i]]
-    let name = keys[i]
+  for(var i = 0; i<ids.length; i++){
+  	let object = {"id":ids[i]}
+  	let json = JSON.stringify(object)
+    let address = httpPost('/addresses', json)
+    let name = httpPost('/name',json)
 
     geocoder.geocode( { 'address': address }, (results, status) =>{
     if (status == google.maps.GeocoderStatus.OK) {
@@ -119,28 +126,4 @@ function createMarker(place,name,address) {
   });
   google.maps.event.addListener(marker, 'click', openWindow);
   return marker
-
-  // google.maps.event.addListener(marker, 'click', function() {
-  //   infowindow.setContent(place.name);
-  //   infowindow.open(map, this);
-  // });
 }
-
-// function addResult(result, i) {
-//         var results = document.getElementById('results');
-
-//         var tr = document.createElement('tr');
-
-//         tr.onclick = function() {
-//           google.maps.event.trigger(markers[i], 'click');
-//         };
-
-//         var nameTd = document.createElement('td');
-//         var name = document.createTextNode(result.name);
-//         nameTd.appendChild(name);
-//         tr.appendChild(nameTd);
-//         results.appendChild(tr);
-//       }
-// $(document).ready(function () {
-// google.maps.event.addDomListener(window, 'load', initMap);
-// });
