@@ -32,21 +32,19 @@ def store():
     return flask.render_template('storepage.html')
 
 # Generates list of addresses for Google Maps API, happens on the storepage HTML
-@application.route('/addresses/',methods=['GET'])
+@application.route('/ids/',methods=['GET'])
 def addresses():
     if flask.request.method == 'GET':
-        addresses = []
-        names = []
+        ids = []
         cur = db.cursor()
-        cur.execute("SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores;")
-        for lyst in cur:
-            addresses.append(lyst[0])
+        # cur.execute("SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores;")
+        # for lyst in cur:
+        #     addresses.append(lyst[0])
             # print({cur2[i][0]:cur[i][0]})
-        cur.execute("SELECT store_name FROM groceryStores;")
+        cur.execute("SELECT grocery_id FROM groceryStores;")
         for lyst in cur:
-            names.append(lyst[0])
-        #print(dict(zip(id, add)))
-    return jsonify(dict(zip(names, addresses)))
+            ids.append(lyst[0])
+    	return jsonify(ids)
 
 # Route to the ticketpage
 @application.route('/ticket')
