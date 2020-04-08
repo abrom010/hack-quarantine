@@ -81,9 +81,15 @@ def storeCust():
 @application.route('/address', methods=['POST'])
 def storeAddress():
     if flask.request.method == 'POST':
-        groceryID = request.form["groceryID"]
+        print('post')
+        print(request.form)
+        for thing in request.form:
+            print(thing)
+        #groceryID = request.form["groceryID"]
+        print(groceryID)
         cur = db.cursor()
         address = cur.execute("SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores WHERE grocery_id = %s;", (groceryID))
+        print(address)
         return address
 
 @application.route('/name', methods=['POST'])
