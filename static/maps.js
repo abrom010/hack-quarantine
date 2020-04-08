@@ -96,10 +96,10 @@ function addresses_to_markers() {
   geocoder = new google.maps.Geocoder();
 
   for(var i = 0; i<ids.length; i++){
-  	let object = {"id":ids[i]}
-  	let json = JSON.stringify(object)
-    let address = httpPost('/addresses', json)
-    let name = httpPost('/name',json)
+  	let formdata = new FormData()
+  	formdata.append("groceryID",ids[i])
+    let address = httpPost('/address', formdata)
+    let name = httpPost('/name', formdata).replace('"','')
 
     geocoder.geocode( { 'address': address }, (results, status) =>{
     if (status == google.maps.GeocoderStatus.OK) {

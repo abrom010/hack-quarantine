@@ -37,10 +37,6 @@ def addresses():
     if flask.request.method == 'GET':
         ids = []
         cur = db.cursor()
-        # cur.execute("SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores;")
-        # for lyst in cur:
-        #     addresses.append(lyst[0])
-            # print({cur2[i][0]:cur[i][0]})
         cur.execute("SELECT grocery_id FROM groceryStores;")
         for lyst in cur:
             ids.append(lyst[0])
@@ -80,7 +76,6 @@ def storeCust():
         custName = request.form["custName"]
         numb = request.form["numb"]
         numb = formatNumb(numb)
-        # return custID, numb
         authToken = random.randint(100000, 999999)
         cur = db.cursor()
         cur.execute('''SELECT MAX(ticket_id), MAX(position) FROM queue''')
@@ -96,30 +91,30 @@ def storeCust():
             to = numb
         )
         flash('Check your phone for your check-in code!')
-        # print(numb)
         return flask.render_template('TicketSuccessPage.html')
 
 @application.route('/address', methods=['POST'])
 def storeAddress():
     if flask.request.method == 'POST':
-        print('post')
-        print(request.form)
-        for thing in request.form:
-            print(thing)
-        #groceryID = request.form["groceryID"]
+        groceryID = request.form["groceryID"]
         print(groceryID)
         cur = db.cursor()
-        address = cur.execute("SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores WHERE grocery_id = %s;", (groceryID))
+        query = "SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores WHERE grocery_id = "+groceryID+";"
+        cur.execute(query)
+        address = cur.fetchone()[0]
         print(address)
-        return address
+        return jsonify(address)
 
 @application.route('/name', methods=['POST'])
 def storeName():
     if flask.request.method == 'POST':
         groceryID = request.form["groceryID"]
         cur = db.cursor()
-        name = cur.execute("SELECT store_name FROM groceryStores WHERE grocery_id = %s;", (groceryID))
-        return name
+        query = "SELECT store_name FROM groceryStores WHERE grocery_id = "+groceryID+";"
+        cur.execute(query)
+        name = cur.fetchone()[0]
+        print(name)
+        return jsonify(name)
         
 @application.route('/position')
 def position():
