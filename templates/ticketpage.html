@@ -46,6 +46,7 @@
       <h1 id="storeName"></h1><br>
       <p id="storeAddress"></p>
       <p id='csz'></p>
+      <p hidden id="id">{{ id }}</p>
  <!--address in 1st line, city state and zip in 2nd-->
       <p class="queueTime">Current Queue Size: <span id="queueSize"></span></p>
       <p class="queueTime">Current Wait Time: Time</p> <!--these 2 lines can be same line or 2 diff lines-->
@@ -84,7 +85,7 @@
 
 <!-- Start of Script calls -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QGPvA6uWSJVWABYg_JUp7pvwiQqauMY&callback=initMap"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QGPvA6uWSJVWABYg_JUp7pvwiQqauMY&callback=initMap"></script> -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='ticket.js') }}"></script>
 <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>

@@ -78,7 +78,10 @@ function openWindow(){
   marker = this
   document.getElementById("title").innerHTML = marker.title;
   document.getElementById('address').innerHTML = marker.address;
-  document.getElementById('link').innerHTML = marker.link;
+  console.log(marker.id)
+  loc = "location='/ticket/" + marker.id + "'";
+  document.getElementById("butt").setAttribute( "onclick", loc);
+  // console.log(loc)
 
   infoWindow.open(map,marker)
 }
@@ -96,11 +99,14 @@ function addresses_to_markers() {
     address = address.replace(/['"]+/g, '')
     let name = httpPost('/name', formdata)
     name = name.replace(/['"]+/g, '')
-
+    let id = ids[i]
+    // console.log(id)
     geocoder.geocode( { 'address': address }, (results, status) =>{
+      // console.log(id)
     if (status == google.maps.GeocoderStatus.OK) {
       let place = results[0]
-      markers.push(createMarker(place,name,address))
+      // console.log(id)
+      markers.push(createMarker(place,name,address,id))
     } else {
       alert('Geocode was not successful for the following reason: ' + status)
     }
@@ -108,7 +114,7 @@ function addresses_to_markers() {
   }
 }
 
-function createMarker(place,name,address) {
+function createMarker(place,name,address,id) {
   let marker = new google.maps.Marker({
     map: null,
     position: place.geometry.location,
@@ -116,8 +122,8 @@ function createMarker(place,name,address) {
     label:name[0],
 
     title:name,
-    link:'http://link.com',
-    address:address,
+    id:id,
+    address:address
 
   });
   google.maps.event.addListener(marker, 'click', openWindow);

@@ -1,8 +1,8 @@
 window.onload = function() {
-  function httpGet() {
+  function httpGet(url, data) {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", '/storeData', false );
-    xmlHttp.send( null );
+    xmlHttp.open( "POST", '/storeData', false );
+    xmlHttp.send( data );
     return xmlHttp.response;
   }
 
@@ -13,7 +13,11 @@ window.onload = function() {
     return xmlHttp.responseText;
   }
 
-  let request = httpGet()
+  let formdata = new FormData()
+  formdata.append("id",document.getElementById("id").value)
+  let request = httpGet("/storeData", formdata)
+
+
   data = JSON.parse(request)
   data = data[0]
   name = data[0]

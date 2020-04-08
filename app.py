@@ -42,19 +42,45 @@ def addresses():
             ids.append(lyst[0])
         return jsonify(ids)
 
+@application.route('/address', methods=['POST'])
+def storeAddress():
+    if flask.request.method == 'POST':
+        groceryID = request.form["groceryID"]
+        print(groceryID)
+        cur = db.cursor()
+        query = "SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores WHERE grocery_id = "+groceryID+";"
+        cur.execute(query)
+        address = cur.fetchone()[0]
+        print(address)
+        return jsonify(address)
+
+@application.route('/name', methods=['POST'])
+def storeName():
+    if flask.request.method == 'POST':
+        groceryID = request.form["groceryID"]
+        cur = db.cursor()
+        query = "SELECT store_name FROM groceryStores WHERE grocery_id = "+groceryID+";"
+        cur.execute(query)
+        name = cur.fetchone()[0]
+        print(name)
+        return jsonify(name)
+
 # Route to the ticketpage
-@application.route('/ticket')
-def ticket():
-    return flask.render_template('ticketpage.html')
+@application.route('/ticket/<string:id>')
+def ticket(id):
+    return flask.render_template('ticketpage.html', id=id)
 
 # Get store name, add, csz to populate ticketpage.html
-@application.route('/storeData')
+@application.route('/storeData',methods=['POST'])
 def storeData():
-    if flask.request.method == 'GET':
-        grocID = 3
+    if flask.request.method == 'POST':
+        groceryID = request.form["id"]
+        print(groceryID)
+        # cur.execute
+        # grocID = 3
         result = []
         cur = db.cursor()
-        cur.execute('''SELECT store_name, address, city, state, zip_code FROM groceryStores WHERE grocery_id = 3;''', (grocID))
+        cur.execute('''SELECT store_name, address, city, state, zip_code FROM groceryStores WHERE grocery_id = %s;''', (groceryID))
         for i in cur:
             result.append(i)
         return jsonify(result)
@@ -93,29 +119,6 @@ def storeCust():
         flash('Check your phone for your check-in code!')
         return flask.render_template('TicketSuccessPage.html')
 
-@application.route('/address', methods=['POST'])
-def storeAddress():
-    if flask.request.method == 'POST':
-        groceryID = request.form["groceryID"]
-        print(groceryID)
-        cur = db.cursor()
-        query = "SELECT CONCAT(address, ', ', city, ', ', state, ', ', zip_code) AS FullAddress FROM groceryStores WHERE grocery_id = "+groceryID+";"
-        cur.execute(query)
-        address = cur.fetchone()[0]
-        print(address)
-        return jsonify(address)
-
-@application.route('/name', methods=['POST'])
-def storeName():
-    if flask.request.method == 'POST':
-        groceryID = request.form["groceryID"]
-        cur = db.cursor()
-        query = "SELECT store_name FROM groceryStores WHERE grocery_id = "+groceryID+";"
-        cur.execute(query)
-        name = cur.fetchone()[0]
-        print(name)
-        return jsonify(name)
-        
 @application.route('/position')
 def position():
     return flask.render_template('position.html')
