@@ -75,12 +75,10 @@ def ticket(id):
 def storeData():
     if flask.request.method == 'POST':
         groceryID = request.form["id"]
-        print(groceryID)
-        # cur.execute
-        # grocID = 3
         result = []
+        query = '''SELECT store_name, address, city, state, zip_code FROM groceryStores WHERE grocery_id = '''+groceryID+";"
         cur = db.cursor()
-        cur.execute('''SELECT store_name, address, city, state, zip_code FROM groceryStores WHERE grocery_id = %s;''', (groceryID))
+        cur.execute(query)
         for i in cur:
             result.append(i)
         return jsonify(result)

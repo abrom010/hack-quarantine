@@ -1,9 +1,16 @@
 window.onload = function() {
-  function httpGet(url, data) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "POST", '/storeData', false );
-    xmlHttp.send( data );
-    return xmlHttp.response;
+  // function httpGet(url, data) {
+  //   var xmlHttp = new XMLHttpRequest();
+  //   xmlHttp.open( "POST", url, false );
+  //   xmlHttp.send( data );
+  //   return xmlHttp.response;
+  // }
+
+  function httpPost(theUrl,data) {
+	  var xmlHttp = new XMLHttpRequest();
+	  xmlHttp.open("POST", theUrl, false );
+	  xmlHttp.send( data );
+	  return xmlHttp.response;
   }
 
   function getSize() {
@@ -14,8 +21,9 @@ window.onload = function() {
   }
 
   let formdata = new FormData()
-  formdata.append("id",document.getElementById("id").value)
-  let request = httpGet("/storeData", formdata)
+  num = document.getElementById("id").innerHTML
+  formdata.append("id",num)
+  let request = httpPost("/storeData", formdata)
 
 
   data = JSON.parse(request)
