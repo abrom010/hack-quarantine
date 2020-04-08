@@ -43,10 +43,11 @@
 <!-- Store Info from Map Section -->
   <div class="text-center">
     <div class="storeInfo">
-      <h1 id="storeName">Store Name</h1>
-      <p id="storeAddress">123 Street Road<br>
-        City, State, 12345</p> <!--address in 1st line, city state and zip in 2nd-->
-      <p class="queueTime">Current Queue Size: Size</p>
+      <h1 id="storeName"></h1><br>
+      <p id="storeAddress"></p>
+      <p id='csz'></p>
+ <!--address in 1st line, city state and zip in 2nd-->
+      <p class="queueTime">Current Queue Size: <span id="queueSize"></span></p>
       <p class="queueTime">Current Wait Time: Time</p> <!--these 2 lines can be same line or 2 diff lines-->
     </div>
 <!-- End of Store Info from Map Section-->
@@ -85,6 +86,7 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QGPvA6uWSJVWABYg_JUp7pvwiQqauMY&callback=initMap"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='ticket.js') }}"></script>
 <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
 
 <!-- End of Script calls -->
