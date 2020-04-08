@@ -43,12 +43,6 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow({
       content: document.getElementById('info-content')
   });
-
-  google.maps.event.addListener(infoWindow,'closeclick',function(){
-   infoWindow = new google.maps.InfoWindow({
-      content: document.getElementById('info-content')
-  });
-});
 }
 
 function onPlaceChanged() {
@@ -99,7 +93,9 @@ function addresses_to_markers() {
   	let formdata = new FormData()
   	formdata.append("groceryID",ids[i])
     let address = httpPost('/address', formdata)
-    let name = httpPost('/name', formdata).replace('"','')
+    address = address.replace(/['"]+/g, '')
+    let name = httpPost('/name', formdata)
+    name = name.replace(/['"]+/g, '')
 
     geocoder.geocode( { 'address': address }, (results, status) =>{
     if (status == google.maps.GeocoderStatus.OK) {
