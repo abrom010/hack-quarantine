@@ -41,6 +41,7 @@ def addresses():
         cur.execute("SELECT grocery_id FROM groceryStores;")
         for lyst in cur:
             ids.append(lyst[0])
+        cur.close()
         return jsonify(ids)
 
 @application.route('/address', methods=['POST'])
@@ -53,6 +54,7 @@ def storeAddress():
         cur.execute(query)
         address = cur.fetchone()[0]
         print(address)
+        cur.close()
         return jsonify(address)
 
 @application.route('/name', methods=['POST'])
@@ -64,6 +66,7 @@ def storeName():
         cur.execute(query)
         name = cur.fetchone()[0]
         print(name)
+        cur.close()
         return jsonify(name)
 
 # Route to the ticketpage
@@ -82,6 +85,7 @@ def storeData():
         cur.execute(query)
         for i in cur:
             result.append(i)
+        cur.close()
         return jsonify(result)
 
 # Get queue size to populate ticketpage.html
@@ -91,6 +95,7 @@ def getSize():
         cur = db.cursor()
         cur.execute('''SELECT MAX(position) FROM queue''')
         result = cur.fetchone()
+        cur.close()
         return jsonify(result)
 
 # Generates the user to database, when they enter Name and Phone number on ticketpage.
@@ -116,6 +121,7 @@ def storeCust():
             to = numb
         )
         flash('Check your phone for your check-in code!')
+        cur.close()
         return flask.render_template('TicketSuccessPage.html')
 
 @application.route('/position',methods=['POST','GET'])
@@ -132,6 +138,7 @@ def position():
                 db.commit()
                 cur.execute("UPDATE queue SET position = position-1 WHERE position >= "+str(position)+";")
                 db.commit()
+                cur.close()
             return flask.render_template('position.html')
     return flask.render_template('position.html')
 
