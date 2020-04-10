@@ -8,18 +8,22 @@ import mysql.connector
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 import re
+from twilio.http.http_client import TwilioHttpClient
+
+proxy_client = TwilioHttpClient()
+proxy_client.session.proxies = {'https': os.environ['https_proxy']}
 
 # Create Application
 application = flask.Flask(__name__)
 application.secret_key = 'secret'
 
 # Connect to database
-db = mysql.connector.connect(host="35.225.208.225", user="Aaron", passwd="1AsrzsrGJk0l1uEa", db="hackathon")
+db = mysql.connector.connect(host="abrom010.mysql.pythonanywhere-services.com", user="abrom010", passwd="password123", db="abrom010$hackathon")
 
 # Twilio SID Info
 account_sid = 'ACf50d76cba4344433156557d73e062105'
 auth_token = '5fd058e27df16f50cf47db3f4d4ce732'
-client = Client(account_sid, auth_token)
+client = Client(account_sid, auth_token,http_client=proxy_client)
 
 # Route to Homepage at initial Launch
 @application.route('/')
