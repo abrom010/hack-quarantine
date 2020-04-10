@@ -2,25 +2,30 @@
 
 @import url('https://fonts.googleapis.com/css?family=EB+Garamond|Montserrat|Quicksand&display=swap');
 
+html, body {
+  min-height: 100%;
+}
+
 body{
   overflow-x:hidden;
   font-family: 'Quicksand', sans-serif;
   color: #17252A;
   background-color: #DDD;
+
+  background-image: linear-gradient(17deg,rgba(179,137,255,.3)5%, rgba(137,124,254,.3) 12%, rgba(85,207,235,.2) 89%), url('img/map.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 /* End of all pages CSS */
 
 /* Index Page Only CSS */
 
 #indexBody{
-  background-image: url('img/map.png');
-  height: 100%;
-  /* background-position: center;
+  background-image: linear-gradient(17deg,rgba(179,137,255,.3)5%, rgba(137,124,254,.3) 12%, rgba(85,207,235,.2) 89%), url('img/map.png');
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; */
-
-  /* background-image: linear-gradient(to top,#f00,#00f); */
-
+  background-size: cover;
 }
 
 /* End of Index page CSS */
@@ -37,7 +42,7 @@ body{
 
 .navbar-brand img{
   height: 5rem;
-  margin-left:-10px!important;
+  margin-left:-0px!important;
 }
 
 .navbar-nav li{
@@ -144,12 +149,6 @@ html, body {
 
 /* Start Ticket Page CSS */
 
-#cover {
-  background-image: url('img/map.png');
-  align-items: center;
-  position: relative;
-  max-height: 100%;
-}
 
 .storeInfo {
   width:100%;
@@ -232,7 +231,7 @@ label{
 
 /* Store Page css */
 #store-body {
-  padding-top: 56px; 
+  padding-top: 106px; 
   background-color: aliceblue;
 
 }
