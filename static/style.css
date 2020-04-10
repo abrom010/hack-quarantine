@@ -6,7 +6,7 @@ body{
   overflow-x:hidden;
   font-family: 'Quicksand', sans-serif;
   color: #17252A;
-  background-color: #DDD
+  background-color: #DDD;
 }
 /* End of all pages CSS */
 
@@ -14,6 +14,13 @@ body{
 
 #indexBody{
   background-image: url('img/map.png');
+  height: 100%;
+  /* background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+
+  /* background-image: linear-gradient(to top,#f00,#00f); */
+
 }
 
 /* End of Index page CSS */
@@ -30,7 +37,7 @@ body{
 
 .navbar-brand img{
   height: 5rem;
-  margin-left:-50px!important;
+  margin-left:-10px!important;
 }
 
 .navbar-nav li{
@@ -56,7 +63,7 @@ body{
   width:100%;
   max-width: 100%;
   position: absolute;
-  top: 50%;
+  top: 40%;
   z-index:1;
   color:white;
 }
@@ -80,6 +87,9 @@ body{
   border-radius: 0;
 }
 
+.caption a:hover {
+  color: black;
+}
 .bt-lg{
   border-width: medium;
   border-radius: 0;
@@ -145,7 +155,7 @@ html, body {
   width:100%;
   max-width: 100%;
   position: absolute;
-  top: 20%;
+  top: 25%;
   z-index:1;
   color:white;
 }
@@ -220,6 +230,37 @@ label{
 }
 /* End of Ticket Page CSS */
 
+/* Store Page css */
+#store-body {
+  padding-top: 56px; 
+  background-color: aliceblue;
+
+}
+
+.search-bg {
+  background-color: rgba(3, 22, 27, 0.8);
+  padding: 10px;
+}
+
+.form-control {
+  border: 3px solid #a0dcf361;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 126px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color:rgba(3, 22, 27, 0.8);
+  
+}
+
+.foot-text {
+  color: white;
+}
+
+/* End Store Page css */
 
 
 /*============ BOOTSTRAP BREAK POINTS:
