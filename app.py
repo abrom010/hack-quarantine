@@ -14,8 +14,8 @@ application = flask.Flask(__name__)
 application.secret_key = 'secret'
 
 # Connect to database
-#db = mysql.connector.connect(host="35.225.208.225", user="Aaron", passwd="1AsrzsrGJk0l1uEa", db="hackathon")
-db = mysql.connector.connect(host="localhost", user="root", passwd="root", db="hackathon")
+db = mysql.connector.connect(host="35.225.208.225", user="Aaron", passwd="1AsrzsrGJk0l1uEa", db="hackathon")
+#db = mysql.connector.connect(host="localhost", user="root", passwd="root", db="hackathon")
 
 # Twilio SID Info
 account_sid = 'ACf50d76cba4344433156557d73e062105'
