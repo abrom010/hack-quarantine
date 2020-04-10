@@ -121,6 +121,21 @@ def storeCust():
 def position():
     return flask.render_template('position.html')
 
+@application.route('/enter',methods=['POST'])
+def enter():
+    if flask.request.method == 'POST':
+        code = request.form["code"]
+        cur = db.cursor()
+        cur.execute("SELECT position FROM queue WHERE authentication = "+code+";")
+        lyst = cur.fetchall()
+        if len(lyst) == 1:
+            position = lyst[0][0]
+            cur.execute("DELETE FROM queue WHERE authentication = "+code+";")
+            db.commit()
+            cur.execute("UPDATE queue SET position = position-1 WHERE position >= "+str(position)+";")
+            db.commit()
+        return flask.render_template('position.html')
+
 @application.route('/populateTable', methods=['GET'])
 def populateTable():
     if flask.request.method == 'GET':
