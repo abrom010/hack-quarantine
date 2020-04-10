@@ -14,7 +14,8 @@ application = flask.Flask(__name__)
 application.secret_key = 'secret'
 
 # Connect to database
-db = mysql.connector.connect(host="35.225.208.225", user="Aaron", passwd="1AsrzsrGJk0l1uEa", db="hackathon")
+#db = mysql.connector.connect(host="35.225.208.225", user="Aaron", passwd="1AsrzsrGJk0l1uEa", db="hackathon")
+db = mysql.connector.connect(host="localhost", user="root", passwd="root", db="hackathon")
 
 # Twilio SID Info
 account_sid = 'ACf50d76cba4344433156557d73e062105'
@@ -117,24 +118,37 @@ def storeCust():
         flash('Check your phone for your check-in code!')
         return flask.render_template('TicketSuccessPage.html')
 
-@application.route('/position')
+@application.route('/position',methods=['POST','GET'])
 def position():
-    return flask.render_template('position.html')
-
-@application.route('/enter',methods=['POST'])
-def enter():
     if flask.request.method == 'POST':
         code = request.form["code"]
-        cur = db.cursor()
-        cur.execute("SELECT position FROM queue WHERE authentication = "+code+";")
-        lyst = cur.fetchall()
-        if len(lyst) == 1:
-            position = lyst[0][0]
-            cur.execute("DELETE FROM queue WHERE authentication = "+code+";")
-            db.commit()
-            cur.execute("UPDATE queue SET position = position-1 WHERE position >= "+str(position)+";")
-            db.commit()
-        return flask.render_template('position.html')
+        if len(code) == 6:
+            cur = db.cursor()
+            cur.execute("SELECT position FROM queue WHERE authentication = "+code+";")
+            lyst = cur.fetchall()
+            if len(lyst) == 1:
+                position = lyst[0][0]
+                cur.execute("DELETE FROM queue WHERE authentication = "+code+";")
+                db.commit()
+                cur.execute("UPDATE queue SET position = position-1 WHERE position >= "+str(position)+";")
+                db.commit()
+            return flask.render_template('position.html')
+    return flask.render_template('position.html')
+
+# @application.route('/enter',methods=['POST'])
+# def enter():
+#     if flask.request.method == 'POST':
+#         code = request.form["code"]
+#         cur = db.cursor()
+#         cur.execute("SELECT position FROM queue WHERE authentication = "+code+";")
+#         lyst = cur.fetchall()
+#         if len(lyst) == 1:
+#             position = lyst[0][0]
+#             cur.execute("DELETE FROM queue WHERE authentication = "+code+";")
+#             db.commit()
+#             cur.execute("UPDATE queue SET position = position-1 WHERE position >= "+str(position)+";")
+#             db.commit()
+#         return flask.render_template('position.html')
 
 @application.route('/populateTable', methods=['GET'])
 def populateTable():
