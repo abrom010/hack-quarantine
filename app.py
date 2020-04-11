@@ -40,7 +40,7 @@ def mainstore():
 def storeEntry():
     return flask.render_template('storeentry.html')
 
-@application.route('/generateStore')
+@application.route('/generateStore',methods=['POST'])
 def generateStore():
     if flask.request.method == 'POST':
         storeName = request.form["storeName"]
@@ -49,7 +49,7 @@ def generateStore():
         storeState = request.form["storeState"]
         storeZip = request.form["storeZip"]
         cur = db.cursor()
-        cur.execute('''SELECT MAX(grocery_id) FROM queue''')
+        cur.execute('''SELECT MAX(grocery_id) FROM groceryStores''')
         test = cur.fetchone()
         if (test[0]):
             cur.execute('''INSERT INTO groceryStores (grocery_id, store_name, address, city, state, zip_code) VALUES(%s, %s, %s, %s, %s, %s)''', (test[0] + 1, storeName, storeAddress, storeCity, storeState, storeZip))
