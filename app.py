@@ -51,11 +51,11 @@ def generateStore():
         cur = db.cursor()
         cur.execute('''SELECT MAX(grocery_id) FROM groceryStores;''')
         test = cur.fetchone()
-        currId = test[0] + 1
-        if (test[0]):
-            cur.execute('''INSERT INTO groceryStores (grocery_id, store_name, address, city, state, zip_code) VALUES(%s, %s, %s, %s, %s, %s)''', (currId, storeName, storeAddress, storeCity, storeState, storeZip))
+        if test[0]==None:
+            currId = 1
         else:
-            cur.execute('''INSERT INTO groceryStores (grocery_id, store_name, address, city, state, zip_code) VALUES(%s, %s, %s, %s, %s, %s)''', (1, storeName, storeAddress, storeCity, storeState, storeZip))
+            currId = test[0] + 1
+        cur.execute('''INSERT INTO groceryStores (grocery_id, store_name, address, city, state, zip_code) VALUES(%s, %s, %s, %s, %s, %s)''', (currId, storeName, storeAddress, storeCity, storeState, storeZip))
         db.commit()
 
         cur.execute("CREATE TABLE queue" + str(currId) + ''' ( ticket_id INT AUTO_INCREMENT PRIMARY KEY, \
@@ -125,11 +125,12 @@ def getData():
         return jsonify(result)
 
 # Get queue size to populate ticketpage.html
-@application.route('/getSize')
+@application.route('/getSize',methods=['POST'])
 def getSize():
-    if flask.request.method == 'GET':
+    if flask.request.method == 'POST':
+        groceryID = request.form["id"]
         cur = db.cursor()
-        cur.execute('''SELECT MAX(position) FROM queue''')
+        cur.execute('''SELECT MAX(position) FROM queue'''+groceryID+";")
         result = cur.fetchone()
         cur.close()
         return jsonify(result)
@@ -140,16 +141,17 @@ def getSize():
 def generateCustomer():
     if flask.request.method == 'POST':
         custName = request.form["custName"]
+        groceryID = request.form["id"]
         numb = request.form["numb"]
         numb = formatNumb(numb)
         authToken = random.randint(100000, 999999)
         cur = db.cursor()
-        cur.execute('''SELECT MAX(ticket_id), MAX(position) FROM queue''')
+        cur.execute('''SELECT MAX(ticket_id), MAX(position) FROM queue'''+groceryID+";")
         test = cur.fetchone()
         if (test[0]):
-            cur.execute('''INSERT INTO queue (ticket_id, cust_name, position, phone_num, authentication) VALUES(%s, %s, %s, %s, %s)''', (test[0] + 1, custName, test[1] + 1, numb, authToken))
+            cur.execute("INSERT INTO queue"+groceryID+" (ticket_id, cust_name, position, phone_num, authentication) VALUES(%s, %s, %s, %s, %s)", (test[0] + 1, custName, test[1] + 1, numb, authToken))
         else:
-            cur.execute('''INSERT INTO queue (ticket_id, cust_name, position, phone_num, authentication) VALUES(%s, %s, %s, %s, %s)''', (1, custName, 1, numb, authToken))
+            cur.execute("INSERT INTO queue"+groceryID+" (ticket_id, cust_name, position, phone_num, authentication) VALUES(%s, %s, %s, %s, %s)", (1, custName, 1, numb, authToken))
         db.commit()
         meesage = client.messages.create(
             body = authToken,
@@ -160,23 +162,30 @@ def generateCustomer():
         cur.close()
         return flask.render_template('TicketSuccessPage.html')
 
-@application.route('/position',methods=['POST','GET'])
-def position():
+@application.route('/position/<string:id>',methods=['POST','GET'])
+def position(id):
+    cur = db.cursor()
+    cur.execute("SELECT store_name FROM groceryStores WHERE grocery_id = "+id+";")
+    name = cur.fetchone()[0]
     if flask.request.method == 'POST':
         code = request.form["code"]
         if len(code) == 6:
-            cur = db.cursor()
-            cur.execute("SELECT position FROM queue WHERE authentication = "+code+";")
+            cur.execute("SELECT position FROM queue"+id+" WHERE authentication = "+code+";")
             lyst = cur.fetchall()
             if len(lyst) == 1:
                 position = lyst[0][0]
-                cur.execute("DELETE FROM queue WHERE authentication = "+code+";")
+                cur.execute("DELETE FROM queue"+id+" WHERE authentication = "+code+";")
                 db.commit()
-                cur.execute("UPDATE queue SET position = position-1 WHERE position >= "+str(position)+";")
+                cur.execute("UPDATE queue"+id+" SET position = position-1 WHERE position >= "+str(position)+";")
                 db.commit()
                 cur.close()
-            return flask.render_template('position.html')
-    return flask.render_template('position.html')
+            return flask.render_template('position.html',name=name,id=id)
+    return flask.render_template('position.html',name=name,id=id)
+
+@application.route('/myStore')
+def get_id():
+    return flask.render_template('mystore.html')
+
 
 # @application.route('/enter',methods=['POST'])
 # def enter():
@@ -193,12 +202,12 @@ def position():
 #             db.commit()
 #         return flask.render_template('position.html')
 
-@application.route('/populateTable', methods=['GET'])
-def populateTable():
+@application.route('/populateTable/<string:id>', methods=['GET'])
+def populateTable(id):
     if flask.request.method == 'GET':
         name = []
         cur = db.cursor()
-        cur.execute('''SELECT cust_name FROM queue''')
+        cur.execute("SELECT cust_name FROM queue"+id)
         for i in cur:
             name.append(i[0])
         return jsonify(name)

@@ -1,4 +1,4 @@
-DROP TABLE queue;
+DROP TABLE queue7;
 DROP TABLE groceryStores;
 
 CREATE TABLE queue (
@@ -28,5 +28,7 @@ INSERT INTO queue(cust_name, position, phone_num) VALUES("Marisol Garcia", 3, '6
 INSERT INTO groceryStores(store_name, address, city, state, zip_code) VALUES("Food Lion", "8600 University City Blvd", "Charlotte", "NC", 28213);
 INSERT INTO groceryStores(store_name, address, city, state, zip_code) VALUES("Harris Teeter", "1704 Harris Houston Rd", "Charlotte", "NC", 27560);
 
-SELECT * FROM queue;
+SELECT * FROM queue1;
 SELECT * FROM groceryStores;
+ALTER TABLE groceryStores
+MODIFY address VARCHAR(50);

@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
+<p hidden id="id">{{ id }}</p>
 <body data-spy="scroll" data-target="#navbarResponsive">
 <!-- Start Home Section-->
 <!-- <div id="home"> -->
@@ -29,7 +29,7 @@
 
     <div class="text-center">
       <div class="storeInfo">
-        <h1 id="storeName">Store Name</h1>
+        <h1 id="storeName"> {{ name }} </h1>
       </div>
     </div>
 

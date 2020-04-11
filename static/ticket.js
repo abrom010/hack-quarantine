@@ -1,4 +1,4 @@
-lwindow.onload = function() {
+window.onload = function() {
   // function httpGet(url, data) {
   //   var xmlHttp = new XMLHttpRequest();
   //   xmlHttp.open( "POST", url, false );
@@ -13,16 +13,10 @@ lwindow.onload = function() {
 	  return xmlHttp.response;
   }
 
-  function getSize() {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", '/getSize', false );
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-  }
-
   let formdata = new FormData()
   num = document.getElementById("id").innerHTML
   formdata.append("id",num)
+  document.getElementById("id-form").value = num
   let request = httpPost("/getData", formdata)
 
 
@@ -35,7 +29,7 @@ lwindow.onload = function() {
   document.getElementById('storeAddress').innerHTML = address
   document.getElementById('csz').innerHTML = csz
 
-  let size = getSize()
+  let size = httpPost("/getSize",formdata)
   size = size.replace('[', '')
   size = size.replace(']', '')
   document.getElementById('queueSize').innerHTML = size
