@@ -51,11 +51,19 @@ def generateStore():
         cur = db.cursor()
         cur.execute('''SELECT MAX(grocery_id) FROM groceryStores;''')
         test = cur.fetchone()
+        currId = test[0] + 1
         if (test[0]):
-            cur.execute('''INSERT INTO groceryStores (grocery_id, store_name, address, city, state, zip_code) VALUES(%s, %s, %s, %s, %s, %s)''', (test[0] + 1, storeName, storeAddress, storeCity, storeState, storeZip))
+            cur.execute('''INSERT INTO groceryStores (grocery_id, store_name, address, city, state, zip_code) VALUES(%s, %s, %s, %s, %s, %s)''', (currId, storeName, storeAddress, storeCity, storeState, storeZip))
         else:
             cur.execute('''INSERT INTO groceryStores (grocery_id, store_name, address, city, state, zip_code) VALUES(%s, %s, %s, %s, %s, %s)''', (1, storeName, storeAddress, storeCity, storeState, storeZip))
         db.commit()
+
+        cur.execute("CREATE TABLE queue" + str(currId) + ''' ( ticket_id INT AUTO_INCREMENT PRIMARY KEY, \
+        cust_name VARCHAR(25) DEFAULT 'Walk-In', \
+        position INT NOT NULL, \
+        ticket_gen_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, \
+        phone_num VARCHAR(12) NOT NULL, \
+        authentication VARCHAR(160) DEFAULT NULL );''')
         cur.close()
         return flask.render_template('storesuccesspage.html')
 
