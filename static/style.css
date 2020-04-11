@@ -217,7 +217,7 @@ label{
   width: 50% !important;
 }
 
-.table th {
+.table td {
    text-align: center;
 }
 
@@ -259,16 +259,7 @@ label{
 }
 
 
-/* Position Page CSS */ 
 
-.table td{
-  text-align:center;
-}
-
-.AuthenicateCustomerBox{
-  padding-top: 10px;
- 
-}
 /* End Store Page css */
 
 
