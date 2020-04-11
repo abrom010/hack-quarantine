@@ -11,24 +11,69 @@
 <!--Naviation Bar and Logo HTML-->
 
 <body data-spy="scroll" data-target="#navbarResponsive">
-  <div id="home">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    	<a class="navbar-brand" href="#"><img src="../static/img/logo.png"></a>
-    	<button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-
-            </ul>
-        </div>
-    </nav>
-  </div>
+    <div id="home">
+        <nav class="form-navbar navbar navbar-expand-md navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="#"><img src="static/img/logo2.png">Queue Up</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class = "nav-item active">
+                      <a class="nav-link" href="#">My Store</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+      </div>
 
 <!-- End of Navigation and logo HTML-->
 
-  <br>
+
+<div class="new-store-form container">
+    <h2>Store Information</h2>
+    <p>Fill out all the fields.</p>
+    <form action="/generateStore" method="POST" name="generateStore" >
+      <div class="form-group">
+        <label for="store-name">Store Name:</label>
+        <input type="text" class="form-control" name="storeName" id="store-name" placeholder="Enter Store Name" required=True>                    
+      </div>
+      <div class="form-row">
+        <div class="col">
+            <label>Address:</label>
+            <input type="text" class="form-control" name="storeAddress" placeholder="Enter Store Address Here" required=True>                               
+        </div>
+        <div class="col">
+            <label>City:</label>
+            <input type="text" class="form-control" name="storeCity"id="pwd" placeholder="Enter City" name="pswd" required>          
+        </div>
+        
+        <div class="col">
+            <label>State:</label>
+            <input type="text" class="form-control" name="storeState" id="pwd" placeholder="Enter State"  required>          
+        </div>
+        <div class="col">
+            <label>Zip Code:</label>
+            <input type="text" class="form-control" name="storeZip" placeholder="Enter Store Zip Code" pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$" required>          
+        </div>
+    </div>
+    
+      <button type="submit" class="btn-form btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+
 <!-- Store Info from Map Section -->
   <!-- <div class="text-center">
     <div class="storeInfo">
@@ -43,7 +88,7 @@
 
 <!-- Beginning of User Info forms and Submit button -->
     <!-- <section id="cover" class="min-vh-100"> -->
-      <div id="cover-caption">
+      <!-- <div id="cover-caption">
           <div class="container">
               <div class="row text-white">
                   <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
@@ -77,8 +122,8 @@
               </div>
           </div>
       </div>
-  <!-- </section> -->
-</div>
+  <!-</section> -->
+<!-- </div>  -->
 
 <!--End of User Info and Submit button HTML-->
 </body>
