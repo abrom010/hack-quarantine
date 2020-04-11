@@ -1,4 +1,4 @@
-window.onload = function() {
+lwindow.onload = function() {
   // function httpGet(url, data) {
   //   var xmlHttp = new XMLHttpRequest();
   //   xmlHttp.open( "POST", url, false );
@@ -26,8 +26,7 @@ window.onload = function() {
   let request = httpPost("/storeData", formdata)
 
 
-  data = JSON.parse(request)
-  data = data[0]
+  data = JSON.parse(request)[0]
   name = data[0]
   address = data[1]
   csz = data[2] + ", " + data[3] + ", " + data[4]
