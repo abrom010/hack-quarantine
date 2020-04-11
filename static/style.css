@@ -258,6 +258,17 @@ label{
   color: white;
 }
 
+
+/* Position Page CSS */ 
+
+.table td{
+  text-align:center;
+}
+
+.AuthenicateCustomerBox{
+  padding-top: 10px;
+ 
+}
 /* End Store Page css */
 
 
