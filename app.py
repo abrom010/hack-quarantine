@@ -28,9 +28,37 @@ def main():
     return flask.render_template('index.html')
 
 # Route to the Map Page
-@application.route('/store/')
-def store():
-    return flask.render_template('storepage.html')
+@application.route('/map/')
+def map():
+    return flask.render_template('mappage.html')
+
+@application.route('/mainStore')
+def mainstore():
+    return flask.render_template('mainstore.html')
+
+@application.route('/storeEntry')
+def storeEntry():
+    return flask.render_template('storeentry.html')
+
+@application.route('/generateStore')
+def generateStore():
+    if flask.request.method == 'POST':
+        storeName = request.form["storeName"]
+        storeAddress = request.form["storeAddress"]
+        storeCity = request.form["storeCity"]
+        storeState = request.form["storeState"]
+        storeZip = request.form["storeZip"]
+        cur = db.cursor()
+        cur.execute('''SELECT MAX(grocery_id) FROM queue''')
+        test = cur.fetchone()
+        if (test[0]):
+            cur.execute('''INSERT INTO groceryStores (grocery_id, store_name, address, city, state, zip_code) VALUES(%s, %s, %s, %s, %s, %s)''', (test[0] + 1, storeName, storeAddress, storeCity, storeState, storeZip))
+        else:
+            cur.execute('''INSERT INTO groceryStores (grocery_id, store_name, address, city, state, zip_code) VALUES(%s, %s, %s, %s, %s, %s)''', (1, storeName, storeAddress, storeCity, storeState, storeZip))
+        db.commit()
+        cur.close()
+        return flask.render_template('storesuccesspage.html')
+
 
 # Generates list of addresses for Google Maps API, happens on the storepage HTML
 @application.route('/ids/',methods=['GET'])
@@ -75,8 +103,8 @@ def ticket(id):
     return flask.render_template('ticketpage.html', id=id)
 
 # Get store name, add, csz to populate ticketpage.html
-@application.route('/storeData',methods=['POST'])
-def storeData():
+@application.route('/getData',methods=['POST'])
+def getData():
     if flask.request.method == 'POST':
         groceryID = request.form["id"]
         result = []
@@ -100,8 +128,8 @@ def getSize():
 
 # Generates the user to database, when they enter Name and Phone number on ticketpage.
 # Then texts them the code and sends them to TicketSuccessPage
-@application.route('/storeCust', methods=['POST'])
-def storeCust():
+@application.route('/generateCustomer', methods=['POST'])
+def generateCustomer():
     if flask.request.method == 'POST':
         custName = request.form["custName"]
         numb = request.form["numb"]

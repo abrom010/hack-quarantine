@@ -23,7 +23,7 @@ lwindow.onload = function() {
   let formdata = new FormData()
   num = document.getElementById("id").innerHTML
   formdata.append("id",num)
-  let request = httpPost("/storeData", formdata)
+  let request = httpPost("/getData", formdata)
 
 
   data = JSON.parse(request)[0]
