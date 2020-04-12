@@ -39,6 +39,51 @@ body{
     url("img/map.png");
 }
 
+#myStore-body {
+  position: relative;
+  overflow: hidden;
+  padding-top: 60px;
+
+  /* padding-top: calc(7rem + 72px); */
+  padding-bottom: 7rem;
+  background-image: linear-gradient(39deg, rgba(242,138,230,0.5) 0%, rgba(246,212,101,0.4) 26%, rgba(253,160,133,0.5) 76%),
+    url("img/map.png");
+}
+
+
+#gen-ticket-body {
+  position: relative;
+  overflow: hidden;
+  padding-top: 60px;
+
+  /* padding-top: calc(7rem + 72px); */
+  padding-bottom: 7rem;
+  background-image: linear-gradient(39deg, rgba(242,138,230,0.5) 0%, rgba(246,212,101,0.4) 26%, rgba(253,160,133,0.5) 76%),
+    url("img/map.png");
+}
+
+#success-body {
+  position: relative;
+  overflow: hidden;
+  padding-top: 60px;
+
+  /* padding-top: calc(7rem + 72px); */
+  padding-bottom: 7rem;
+  background-image: linear-gradient(39deg, rgba(242,138,230,0.5) 0%, rgba(246,212,101,0.4) 26%, rgba(253,160,133,0.5) 76%),
+    url("img/map.png");
+}
+
+
+#position-body {
+  position: relative;
+  overflow: hidden;
+  padding-top: 60px;
+
+  /* padding-top: calc(7rem + 72px); */
+  padding-bottom: 7rem;
+  background-image: linear-gradient(39deg, rgba(242,138,230,0.5) 0%, rgba(246,212,101,0.4) 26%, rgba(253,160,133,0.5) 76%),
+    url("img/map.png");
+}
 /* End of all pages CSS */
 
 /* Index Page Only CSS */
@@ -457,6 +502,7 @@ label{
     border-color: #fc797b;
 }
 
+
 .storeentry-button {
   background-color: rgb(251, 122, 123);
   border-color: #fb7a7b;
@@ -477,8 +523,14 @@ label{
 }
 
 .success-text {
-  color: white;
+  color: rgb(0, 0, 0);
+  background-color: #f8f9fa;
+  padding: 90px;
+  /* padding-top: 220px; */
+  MARGIN-TOP: 200px;
 }
+
+
 
 
 /*============ BOOTSTRAP BREAK POINTS:

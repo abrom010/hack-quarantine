@@ -12,49 +12,64 @@
 
 <body id="success-body"data-spy="scroll" data-target="#navbarResponsive">
   <div id="home">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    	<a class="navbar-brand" href="/"><img src="static/img/logo2.png"></a>
-    	<button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              
-            </ul>
-        </div>
-    </nav>
+    <nav class="form-navbar navbar navbar-expand-md navbar-light bg-light fixed-top">
+      <a class="navbar-brand" href="/"><img src="static/img/logo2.png">Queue Up</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#navbarResponsive">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+              <li class = "nav-item active">
+                <a class="nav-link" href="#">My Store</a>
+              </li>
+          </ul>
+      </div>
+  </nav>
   </div>
 
-<!-- End of Navigation and logo HTML-->
 
-  <br>
+
+  <div class="new-store-form container">
+    <h1>Thank you for using Queue Up!</h1>
+    <h5 id="storeAddress">Check your phone for your code!<br>
+      It will be sent to you in a few moments...</h5> 
+    <!-- <p>Fill out all the fields.</p> -->
+    <form action="/" >
+        <button type="button" class="storeentry-button btn-form btn btn-primary">Return to Home</button>
+      </form>
+  </div>
+
+
+
+
+<!-- End of Navigation and logo HTML-->
 <!-- Thank you text Section -->
-  <div class="success-text text-center">
+  <!-- <div class="success-text text-center">
     <div class="storeInfo">
       <h1 id="storeName">Thank you for using Queue Up!</h1>
-      <p id="storeAddress">Check your phone for your code!<br>
-        It will be sent to you in a few moments...</p> 
-    </div>
+      <h4 id="storeAddress">Check your phone for your code!<br>
+        It will be sent to you in a few moments...</h4> 
+    </div> -->
 <!-- End of thank you text Section-->
 
 <!-- Beginning of User Info forms and Submit button -->
     <!-- <section id="cover" class="min-vh-100"> -->
-      <div id="cover-caption">
+      <!-- <div id="cover-caption">
           <div class="container">
               <div class="row text-white">
-                  <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
-                      <div class="px-2">
-                          <form action="/" class="justify-content-center">
-                              <input type="submit" class="btn btn-primary btn-lg" value="Return to Start"></button>
-                          </form>
-                      </div>
+                  <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4"> -->
+                      <!-- <div class="px-2"> -->
+                          <!-- <form action="/" class="justify-content-center">
+                              <input type="submit" class="storeentry-button btn-form btn btn-primary" value="Return to Start"></button>
+                          </form> -->
+                      <!-- </div>
                   </div>
               </div>
-          </div>
-      </div>
+          </div> -->
+      <!-- </div> -->
   <!-- </section> -->
-</div>
+<!-- </div> -->
 
 <!--End of User Info and Submit button HTML-->
 </body>

@@ -9,10 +9,23 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body data-spy="scroll" data-target="#navbarResponsive">
-<!-- Start Home Section-->
-<!-- <div id="home"> -->
-
+<body id="myStore-body"data-spy="scroll" data-target="#navbarResponsive">
+  <div id="home">
+    <nav class="form-navbar navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="/"><img src="static/img/logo2.png">Queue Up</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class = "nav-item active">
+                  <a class="nav-link" href="#">My Store</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  </div>
 <!--Navigation-->
         <script type="text/javascript">
           function get_id(){
@@ -21,7 +34,20 @@
           }
         </script>
 
-        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+
+<div class="new-store-form container">
+  <h2>Enter your store ID to check your queue.</h2>
+  <!-- <p>Fill out all the fields.</p> -->
+  <form action="/generateStore" method="POST" name="generateStore" >
+    <div class="form-group">
+      <label for="store-name">Store ID:</label>
+      <input id="inpoot" type="text" class="form-control" name="store_id"  placeholder="Enter Store ID" required=True>                    
+    </div>
+      <button type="button" class="storeentry-button btn-form btn btn-primary" onClick="get_id()">View Queue</button>
+      <button type="button" class="storeentry-button btn-form btn btn-primary" onclick="location = '/storeEntry'">Register Your Store</button>
+    </form>
+</div>
+        <!-- <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
         <div class="px-2">
           <div class="form-group">
               <label class="sr-only">Store ID:</label>
@@ -32,7 +58,7 @@
         </div>
           </div>
     </div>
-    </section>
+    </section> -->
 <!-- <button onclick="storePage()">Hey</button> -->
 
 <!--- Script Source Files -->
