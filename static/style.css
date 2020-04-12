@@ -8,12 +8,14 @@ html, body {
 }
 
 body{
+  background-image: linear-gradient(120deg,#f6d365,#fda085);
   overflow-x:hidden;
   font-family: 'Quicksand', sans-serif;
   color: #17252A;
   /* background-color: #e9ecef; */
   background-color: white;
 }
+
 /* End of all pages CSS */
 
 /* Index Page Only CSS */
@@ -36,6 +38,10 @@ body{
   background-attachment: scroll;
   background-size: cover;
   padding-bottom: 200px;
+}
+
+.index-body {
+  background-image: none;
 }
 
 .index-welcome {
@@ -92,8 +98,10 @@ body{
 }
 
 .about-desc {
-  margin-left: 500px;
-  margin-right: 500px;
+  /*padding-left: 300px;
+  padding-right: 300px;*/
+  /*margin-left: 300px;
+  margin-right: 300px;*/
 }
 
 /* .nav-link:active {
@@ -348,7 +356,7 @@ label{
 }
 
 .form-group{
-  margin-bottom: 25px;;
+  margin-bottom: 25px;
 }
 
 .form-group input {

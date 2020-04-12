@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body data-spy="scroll" data-target="#navbarResponsive" id="indexBody">
+<body class="index-body" data-spy="scroll" data-target="#navbarResponsive" id="indexBody">
 <div id="home">
 
 	<section>
@@ -31,7 +31,9 @@
 
         <div class="index-welcome">
           <h1>Welcome to Queue Up!</h1>
-			    <h4 class="about-desc">Queue Up is a grocery store queue management platform for mitigating large crowds and practicing safe distancing outside and inside the store.</h4>
+			    <h4>Queue Up is a grocery store queue management</h4>
+			    <h4>platform for mitigating large crowds and practicing safe</h4>
+			    <h4>distancing outside and inside the store.</h4>
 			      <button type="button" class="prim-button btn btn-light btn-lg" onclick="location = '/map'">Find a Store</button>
             <button type="button" class="prim-button btn btn-light btn-lg" onclick="location = '/storeEntry'">Register Your Store</button>
         </div>
