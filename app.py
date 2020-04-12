@@ -65,7 +65,7 @@ def generateStore():
         phone_num VARCHAR(12) NOT NULL, \
         authentication VARCHAR(160) DEFAULT NULL );''')
         cur.close()
-        return flask.render_template('storesuccesspage.html')
+        return flask.render_template('storesuccesspage.html',id=currId)
 
 
 # Generates list of addresses for Google Maps API, happens on the storepage HTML
