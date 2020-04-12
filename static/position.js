@@ -9,12 +9,18 @@ window.onload = function() {
 
   num = document.getElementById("id").innerHTML
   // var xmlHttp = new XMLHttpRequest();
-  let data = httpGet('/populateTable/'+num)
+  let data = httpGet('/populateNames/'+num)
   names = JSON.parse(data)
-  for (var i = 1; i<names.length + 1; i++) {
-    // console.log(i.toString())
+  for (var i = 1; i<names.length; i++) {
     id = 'name' + i.toString();
     document.getElementById(id).innerHTML = names[i - 1]
+  }
+
+  data = httpGet('/populateCodes/'+num)
+  codes = JSON.parse(data)
+  for (var i = 1; i<codes.length; i++) {
+    id = 'code' + i.toString();
+    document.getElementById(id).innerHTML = codes[i - 1]
   }
   //console.log(fullData)
   //console.log(data)

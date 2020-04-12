@@ -202,12 +202,22 @@ def get_id():
 #             db.commit()
 #         return flask.render_template('position.html')
 
-@application.route('/populateTable/<string:id>', methods=['GET'])
-def populateTable(id):
+@application.route('/populateNames/<string:id>', methods=['GET'])
+def populateNames(id):
     if flask.request.method == 'GET':
         name = []
         cur = db.cursor()
         cur.execute("SELECT cust_name FROM queue"+id)
+        for i in cur:
+            name.append(i[0])
+        return jsonify(name)
+
+@application.route('/populateCodes/<string:id>', methods=['GET'])
+def populateCodes(id):
+    if flask.request.method == 'GET':
+        name = []
+        cur = db.cursor()
+        cur.execute("SELECT authentication FROM queue"+id)
         for i in cur:
             name.append(i[0])
         return jsonify(name)
