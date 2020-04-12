@@ -14,12 +14,11 @@ application = flask.Flask(__name__)
 application.secret_key = 'secret'
 
 # Connect to database
-db = mysql.connector.connect(host="35.225.208.225", user="Aaron", passwd="1AsrzsrGJk0l1uEa", db="hackathon")
-#db = mysql.connector.connect(host="localhost", user="root", passwd="root", db="hackathon")
+db = mysql.connector.connect(host="localhost", user="username", passwd="password", db="database")
 
 # Twilio SID Info
-account_sid = 'ACf50d76cba4344433156557d73e062105'
-auth_token = '5fd058e27df16f50cf47db3f4d4ce732'
+account_sid = 'ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+auth_token = 'your_auth_token'
 client = Client(account_sid, auth_token)
 
 # Route to Homepage at initial Launch
@@ -32,14 +31,17 @@ def main():
 def map():
     return flask.render_template('mappage.html')
 
+# Route main store
 @application.route('/mainStore')
 def mainstore():
     return flask.render_template('mainstore.html')
 
+# Route to store entry
 @application.route('/storeEntry')
 def storeEntry():
     return flask.render_template('storeentry.html')
 
+# Posts a store to the database, creates a table for their queue
 @application.route('/generateStore',methods=['POST'])
 def generateStore():
     if flask.request.method == 'POST':
@@ -155,10 +157,10 @@ def generateCustomer():
         else:
             cur.execute("INSERT INTO queue"+groceryID+" (ticket_id, cust_name, position, phone_num, authentication) VALUES(%s, %s, %s, %s, %s)", (1, custName, 1, numb, authToken))
         db.commit()
-        msg = "Thank you for using Queue Up! Your authentication code is " + str(authToken) + '''. To check your current position in the queue, please visit http://abrom010.pythonanywhere.com/myPosition/''' + str(groceryID) + "/" + str(authToken)
+        msg = "Thank you for using Queue Up! Your authentication code is " + str(authToken) + '''. To check your current position in the queue, please visit http://your_domain_name_here/myPosition/''' + str(groceryID) + "/" + str(authToken)
         meesage = client.messages.create(
             body = msg,
-            messaging_service_sid = "MGc4338215ff683f8a462df06e206eb8fb",
+            messaging_service_sid = "your_messaging_service_sid",
             to = numb
         )
         cur.close()
@@ -169,7 +171,7 @@ def generateCustomer():
 @application.route('/myPosition/<string:id>/<string:code>')
 def my_position(id,code):
     cur = db.cursor()
-    cur.execute('''SELECT store_name FROM groceryStores WHERE grocery_id = '''+id+";")
+    cur.execute('''SELECT store_name FROM grocerySores WHERE grocery_id = '''+id+";")
     name = cur.fetchone()[0]
     cur.close()
     return flask.render_template('myposition.html',id=id,code=code,name=name)
@@ -185,7 +187,7 @@ def get_position():
     print(position)
     return jsonify(position)
 
-
+# Renders position.html using database info
 @application.route('/position/<string:id>',methods=['POST','GET'])
 def position(id):
     cur = db.cursor()
@@ -206,10 +208,12 @@ def position(id):
             return flask.render_template('position.html',name=name,id=id)
     return flask.render_template('position.html',name=name,id=id)
 
+# Renders mystore.html
 @application.route('/myStore')
 def get_id():
     return flask.render_template('mystore.html')
 
+# Returns the customer names using store id
 @application.route('/populateNames/<string:id>', methods=['GET'])
 def populateNames(id):
     if flask.request.method == 'GET':
@@ -221,6 +225,7 @@ def populateNames(id):
         cur.close()
         return jsonify(name)
 
+# Returns the authentication codes using store id
 @application.route('/populateCodes/<string:id>', methods=['GET'])
 def populateCodes(id):
     if flask.request.method == 'GET':
@@ -239,6 +244,6 @@ def formatNumb(num):
     newNum = "+1" + num
     return newNum
 
-#ONLY RUNS THE FLASK APPLICATION IF THE APP.PY IS BEING USED AS THE DRIVER
+# ONLY RUNS THE FLASK APPLICATION IF THE APP.PY IS BEING USED AS THE DRIVER
 if __name__ == '__main__':
     application.run()
