@@ -137,7 +137,7 @@ def getSize():
 
 # Generates the user to database, when they enter Name and Phone number on ticketpage.
 # Then texts them the code and sends them to TicketSuccessPage
-@application.route('/generateCustomer', methods=['POST'])
+@application.route('/generateCustomer', methods=['POST','GET'])
 def generateCustomer():
     if flask.request.method == 'POST':
         custName = request.form["custName"]
@@ -153,14 +153,19 @@ def generateCustomer():
         else:
             cur.execute("INSERT INTO queue"+groceryID+" (ticket_id, cust_name, position, phone_num, authentication) VALUES(%s, %s, %s, %s, %s)", (1, custName, 1, numb, authToken))
         db.commit()
+        msg = "Thank you for using Queue Up! Your authentication code is " + str(authToken) + '''. To check your current position in the queue, please visit http://abrom010.pythonanywhere.com/myPosition/''' + str(groceryID) + "/" + str(authToken)
         meesage = client.messages.create(
-            body = authToken,
+            body = msg,
             messaging_service_sid = "MGc4338215ff683f8a462df06e206eb8fb",
             to = numb
         )
-        flash('Check your phone for your check-in code!')
         cur.close()
         return flask.render_template('TicketSuccessPage.html')
+    return flask.render_template('TicketSuccessPage.html')
+
+@application.route('/myPosition/<string:id>/<string:code>')
+def my_position(id,code):
+    return flask.render_template('myposition.hmtl',id=id,code=code)
 
 @application.route('/position/<string:id>',methods=['POST','GET'])
 def position(id):
@@ -186,22 +191,6 @@ def position(id):
 def get_id():
     return flask.render_template('mystore.html')
 
-
-# @application.route('/enter',methods=['POST'])
-# def enter():
-#     if flask.request.method == 'POST':
-#         code = request.form["code"]
-#         cur = db.cursor()
-#         cur.execute("SELECT position FROM queue WHERE authentication = "+code+";")
-#         lyst = cur.fetchall()
-#         if len(lyst) == 1:
-#             position = lyst[0][0]
-#             cur.execute("DELETE FROM queue WHERE authentication = "+code+";")
-#             db.commit()
-#             cur.execute("UPDATE queue SET position = position-1 WHERE position >= "+str(position)+";")
-#             db.commit()
-#         return flask.render_template('position.html')
-
 @application.route('/populateNames/<string:id>', methods=['GET'])
 def populateNames(id):
     if flask.request.method == 'GET':
@@ -210,6 +199,7 @@ def populateNames(id):
         cur.execute("SELECT cust_name FROM queue"+id)
         for i in cur:
             name.append(i[0])
+        cur.close()
         return jsonify(name)
 
 @application.route('/populateCodes/<string:id>', methods=['GET'])
@@ -220,6 +210,7 @@ def populateCodes(id):
         cur.execute("SELECT authentication FROM queue"+id)
         for i in cur:
             name.append(i[0])
+        cur.close()
         return jsonify(name)
 
 # Format the phone number for Twilio
