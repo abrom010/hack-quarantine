@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Store</title>
+  <!-- <style></style> -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<p hidden id="id">{{ id }}</p>
+<body data-spy="scroll" data-target="#navbarResponsive">
+<!-- Start Home Section-->
+<!-- <div id="home"> -->
+
+<!--Navigation-->
+<nav class="form-navbar navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="/"><img src="../static/img/logo2.png" height="100px">Queue Up</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+    data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class = "nav-item">
+            <a class="nav-link position-nav" href="/myStore">My Store</a>
+          </li>
+        </ul>
+    </div>
+</nav>
+
+    <div class="store-name text-center">
+      <div class="storeInfo">
+        <h1 id="storeName"> {{ name }} </h1>
+      </div>
+    </div>
+
+<!-- </div> -->
+
+    <section id="cover" class="min-vh-100">
+      <div id="table-area">
+        <div class="container ">
+              <table class="table table-sm position-table text-center">
+                <thead>
+                  <tr>
+                    <th scope="col">Your Ticket Authenication:</th>
+                    <th scope="col">Your Position:</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">111111</th>
+                    <td id="name1">2</td>
+                  </tr>
+                </tbody>
+                </table>
+        </div>
+
+        </div>
+        </div>
+          </div>
+    </div>
+    </section>
+<!-- <button onclick="storePage()">Hey</button> -->
+
+<!--- Script Source Files -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QGPvA6uWSJVWABYg_JUp7pvwiQqauMY&callback=initMap"></script> -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='position.js') }}"></script>
+<!--- End of Script Source Files -->
+
+</body>
+</html>
