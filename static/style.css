@@ -2,6 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=EB+Garamond|Montserrat|Quicksand&display=swap');
 
+
 html, body {
   min-height: 100%;
 }
@@ -238,7 +239,7 @@ label{
 }
 
 .position-table {
-  color:white;
+  color:rgb(0, 0, 0);
   margin: auto;
   width: 50% !important;
 }
@@ -251,7 +252,7 @@ label{
   width: 100%;
   position: absolute;
   z-index: 1;
-  top:40%;
+  top:30%;
 }
 /* End of Ticket Page CSS */
 
@@ -290,6 +291,7 @@ label{
 .position-table td{
   text-align:center;
 }
+
 
 .AuthenicateCustomerBox{
   padding-top: 10px;
@@ -352,6 +354,22 @@ label{
   margin-top:1rem;
 }
 
+
+.store-name {
+  padding-top:
+    10%;
+  
+}
+
+.success-text {
+  padding-top: 17%;
+}
+
+.btn-ticket {
+  color: #fff;
+    background-color: #fb7a7b;
+    border-color: #fc797b;
+}
 
 
 
