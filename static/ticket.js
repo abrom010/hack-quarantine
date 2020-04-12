@@ -13,21 +13,14 @@ window.onload = function() {
 	  return xmlHttp.response;
   }
 
-  function getSize() {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", '/getSize', false );
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-  }
-
   let formdata = new FormData()
   num = document.getElementById("id").innerHTML
   formdata.append("id",num)
+  document.getElementById("id-form").value = num
   let request = httpPost("/getData", formdata)
 
 
-  data = JSON.parse(request)
-  data = data[0]
+  data = JSON.parse(request)[0]
   name = data[0]
   address = data[1]
   csz = data[2] + ", " + data[3] + ", " + data[4]
@@ -36,7 +29,7 @@ window.onload = function() {
   document.getElementById('storeAddress').innerHTML = address
   document.getElementById('csz').innerHTML = csz
 
-  let size = getSize()
+  let size = httpPost("/getSize",formdata)
   size = size.replace('[', '')
   size = size.replace(']', '')
   document.getElementById('queueSize').innerHTML = size

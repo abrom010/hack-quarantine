@@ -8,40 +8,71 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body data-spy="scroll" data-target="#navbarResponsive" id="indexBody">
+<body class="index-body" data-spy="scroll" data-target="#navbarResponsive" id="indexBody">
 <div id="home">
 
-<!--Start Navigation and Logo HTML-->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-	<a class="navbar-brand" href="#"><img src="static/img/logo.png"></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-    data-target="#navbarResponsive">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+	<section>
+      <header class="index-head text-center text-white">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+          <a class="navbar-brand" href="/"><img src="static/img/logo2.png" height="100px">Queue Up</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                  <li class = "nav-item active">
+                    <a class=" nav-link" href="/myStore">My Store</a>
+                  </li>
+                </ul>
+            </div>
+        </nav>
 
-        </ul>
+
+        <div class="index-welcome">
+          <h1>Welcome to Queue Up!</h1>
+			    <h4 class="about-desc">Queue Up is a grocery store queue management platform for mitigating large crowds and practicing safe distancing outside and inside the store.</h4>
+			      <button type="button" class="prim-button btn btn-light btn-lg" onclick="location = '/map'">Find a Store</button>
+            <button type="button" class="prim-button btn btn-light btn-lg" onclick="location = '/storeEntry'">Register Your Store</button>
+        </div>
+      </header>
+	</section>
+	
+	 <div class="left-divider">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <img src="static/img/icon1.png" width="100px" />
+              <!-- <h3></h3> -->
+              
+          </div>
+          <div class="col-sm-6 text-center">
+            <h2 class="red">Here is how it works:</h2>
+              <table class="table table-sm text-center">
+                <tbody >
+                  <tr class = "table-abc">
+                    <th scope="index-row text-right">1</th>
+                    <td >Select a grocery store you want to go to.</td>
+                  </tr>
+                  <tr class = "table-abc">
+                    <th scope="row">2</th>
+                    <td >Get a ticket
+                      delivered to your phone.</td>
+                  </tr>
+                  <tr class = "table-abc">
+                    <th scope="row">3</th>
+                    <td  colspan="2">You will get notified when you can go
+                      in!</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
     </div>
-</nav>
-</div>
-<!-- End of Navigation and logo HTML -->
-
-<!-- Start of Center Page Text and start button-->
-<div class="caption text-center">
-	<h1>Welcome to Queue Up!</h1>
-	<h3>Find Your Local Grocery Store to Queue Up In!</h3>
-	<a class="btn btn-outline-light btn-lg" onclick="location = '/map'">Get Started</a>
-
-  <h3>Register Your Grocery Store here</h3>
-  <a class="btn btn-outline-light btn-lg" onclick="location = '/mainStore'">Temp</a>
-</div>
-<!-- End of center page text and start button-->
 
 <!--- Script Source Files -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QGPvA6uWSJVWABYg_JUp7pvwiQqauMY&callback=initMap"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
 <!--- End of Script Source Files -->

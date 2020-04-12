@@ -10,10 +10,10 @@
 
 <!--Naviation Bar and Logo HTML-->
 
-<body data-spy="scroll" data-target="#navbarResponsive">
+<body id="success-body"data-spy="scroll" data-target="#navbarResponsive">
   <div id="home">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    	<a class="navbar-brand" href="#"><img src="static/img/logo.png"></a>
+    	<a class="navbar-brand" href="/"><img src="static/img/logo2.png"></a>
     	<button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarResponsive">
             <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
 
   <br>
 <!-- Thank you text Section -->
-  <div class="text-center">
+  <div class="success-text text-center">
     <div class="storeInfo">
       <h1 id="storeName">Thank you for using Queue Up!</h1>
       <p id="storeAddress">Check your phone for your code!<br>
@@ -60,9 +60,9 @@
 </body>
 
 <!-- Start of Script calls -->
-<script type="text/javascript" src="{{ url_for('static', filename='ticketpage.js') }}"></script>
+<!-- <script type="text/javascript" src="{{ url_for('static', filename='ticketpage.js') }}"></script> -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QGPvA6uWSJVWABYg_JUp7pvwiQqauMY&callback=initMap"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QGPvA6uWSJVWABYg_JUp7pvwiQqauMY&callback=initMap"></script> -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
 

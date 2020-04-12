@@ -2,32 +2,109 @@
 
 @import url('https://fonts.googleapis.com/css?family=EB+Garamond|Montserrat|Quicksand&display=swap');
 
+
 html, body {
   min-height: 100%;
 }
 
 body{
+  background-image: linear-gradient(120deg,#f6d365,#fda085);
   overflow-x:hidden;
   font-family: 'Quicksand', sans-serif;
   color: #17252A;
-  background-color: #DDD;
-
-  background-image: linear-gradient(17deg,rgba(179,137,255,.3)5%, rgba(137,124,254,.3) 12%, rgba(85,207,235,.2) 89%), url('img/map.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-color: #e9ecef; */
+  background-color: white;
 }
+
 /* End of all pages CSS */
 
 /* Index Page Only CSS */
+.index-head {
+  position: relative;
+  overflow: hidden;
+  padding-top: 60px;
 
-#indexBody{
-  background-image: linear-gradient(17deg,rgba(179,137,255,.3)5%, rgba(137,124,254,.3) 12%, rgba(85,207,235,.2) 89%), url('img/map.png');
-  background-position: center;
+  /* padding-top: calc(7rem + 72px); */
+  padding-bottom: 7rem;
+  background-image: linear-gradient(
+      39deg,
+      rgba(179, 137, 255, 0.4) 5%,
+      rgba(195, 124, 254, 0.3) 12%,
+      rgba(83, 226, 71, 0.3) 89%
+    ),
+    url("img/map.png");
   background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: scroll;
   background-size: cover;
+  padding-bottom: 200px;
 }
 
+.index-body {
+  background-image: none;
+}
+
+.index-welcome {
+  padding-top:90px;
+}
+
+/* .index-welcome{
+  width:100%;
+  max-width: 100%;
+  position: absolute;
+  top: 40%;
+  z-index:1;
+  color:white;
+} */
+
+.index-welcome h1{
+  font-size: 3.8 rem;
+  font-weight: 700;
+  letter-spacing: .2rem;
+  text-shadow: .1rem .1rem .8rem #03161B;
+  /* padding-bottom: 1.6rem; */
+}
+
+.index-welcome h3{
+  font-style: 2rem;
+  text-shadow: .1rem .1rem .8rem #03161B;
+  padding-bottom: 1rem;
+}
+/* .index-welcome form{
+  padding-bottom: 1.3rem;
+  border-width: medium;
+  border-radius: 0;
+} */
+
+.index-welcome a:hover {
+  color: black;
+}
+
+.left-divider {
+  padding: 80px 0;
+}
+
+.left-divider img {
+  width: 60%;
+}
+
+.red {
+  color: #ff676a;
+  font-weight: bolder;
+}
+
+.table-abc{
+  font-size: 24px;
+}
+
+.about-desc {
+  margin-left: 500px;
+  margin-right: 500px;
+}
+
+/* .nav-link:active {
+  color: white;
+} */
 /* End of Index page CSS */
 
 /* Start of navbar CSS */
@@ -37,7 +114,7 @@ body{
   font-weight: 700;
   font-size: .9rem;
   letter-spacing: .1rem;
-  background-color: rgba(3, 22, 27, 0.8)!important;
+  background-color: transparent!important;
 }
 
 .navbar-brand img{
@@ -50,58 +127,37 @@ body{
   font-family: 'Montserrat', sans-serif;
 }
 
-.navbar-dark .navbar-nav .navbar-link{
+/* .navbar-dark .navbar-nav .navbar-link{
   color:white;
   padding-top: .8rem;
-}
+} */
 
 .navbar-dark .navbar-nav .navbar-link.active,
 .navbar-dark .navbar-nav .navbar-link:hover{
-  color:#1EBBA3;
+  color:rgb(255, 255, 255);
 }
 
 /* End of Navbar CSS */
 
 /* Text, buttons and title CSS on index, ticketpage */
 
-.caption{
-  width:100%;
-  max-width: 100%;
-  position: absolute;
-  top: 40%;
-  z-index:1;
-  color:white;
-}
-
-.caption h1{
-  font-size: 3.8 rem;
-  font-weight: 700;
-  letter-spacing: .3rem;
-  text-shadow: .1rem .1rem .8rem #03161B;
-  padding-bottom: 1.6rem;
-}
-
-.caption h3{
-  font-style: 2rem;
-  text-shadow: .1rem .1rem .8rem #03161B;
-  padding-bottom: 1rem;
-}
-.caption form{
-  padding-bottom: 1.3rem;
-  border-width: medium;
-  border-radius: 0;
-}
-
-.caption a:hover {
-  color: black;
-}
-.bt-lg{
-  border-width: medium;
-  border-radius: 0;
-  padding: .6rem 1.3rem;
+.prim-button{
+  /* border-width: medium; */
+  /* border-radius: 0; */
+  padding: .9rem 1.3rem;
   font-size: 1.1rem;
+  margin-left: 1rem;
+  margin-top: 10px;
 }
-.btn-secondary {
+
+.prim-button {
+  text-align: right;
+}
+
+.intructions{
+  color: rgb(255, 132, 132);
+}
+/* .btn-secondary {
   border-width: medium;
   border-radius: 0;
   padding: .6rem 1.2rem;
@@ -116,8 +172,8 @@ body{
 .btn-secondary:focus {
   border-color: #189582;
   background-color: #189582;
-  color: white;
-}
+  color: rgb(0, 0, 0);
+} */
 
 /* End of Text, buttons and title CSS on index, ticketpage */
 
@@ -150,7 +206,7 @@ html, body {
 /* Start Ticket Page CSS */
 
 
-.storeInfo {
+/* .storeInfo {
   width:100%;
   max-width: 100%;
   position: absolute;
@@ -163,7 +219,7 @@ html, body {
   font-size: 24px;
   font-style: 2rem;
   text-shadow: .1rem .1rem .8rem #03161B;
-}
+} */
 
 .genTicketBox{
   width:100%;
@@ -173,7 +229,7 @@ html, body {
   z-index:1;
 }
 
-#storeName {
+/* #storeName {
   font-size: 48px;
   font-weight: 700;
   letter-spacing: .3rem;
@@ -186,18 +242,18 @@ html, body {
   font-style: 2rem;
   text-shadow: .1rem .1rem .8rem #03161B;
   padding-bottom: 1rem;
-}
+} */
 
 label{
   text-align: left!important;
 }
-
+/* 
 #cover-caption {
   width: 100%;
   position: absolute;
   z-index: 1;
   top:60%;
-}
+} */
 
 #textpage form:before {
   content: '';
@@ -211,13 +267,13 @@ label{
   border-radius: 10px;
 }
 
-.table {
-  color:white;
+.position-table {
+  color:rgb(0, 0, 0);
   margin: auto;
   width: 50% !important;
 }
 
-.table th {
+.position-table th {
    text-align: center;
 }
 
@@ -225,7 +281,7 @@ label{
   width: 100%;
   position: absolute;
   z-index: 1;
-  top:40%;
+  top:30%;
 }
 /* End of Ticket Page CSS */
 
@@ -240,9 +296,9 @@ label{
   padding: 10px;
 }
 
-.form-control {
+/* .form-control {
   border: 3px solid #a0dcf361;
-}
+} */
 
 .footer {
   position: absolute;
@@ -261,15 +317,89 @@ label{
 
 /* Position Page CSS */ 
 
-.table td{
+.position-table td{
   text-align:center;
 }
+
 
 .AuthenicateCustomerBox{
   padding-top: 10px;
  
 }
 /* End Store Page css */
+
+
+/* Store Entry css */
+
+
+.form-navbar {
+  background-color: #f8f9fa!important;
+
+}
+
+.form-group .form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-group{
+  margin-bottom: 25px;;
+}
+
+.form-group input {
+  height: 42px;
+  border-radius: 5px;
+  border:0;
+  font-size: 18px;
+}
+
+.new-store-form{
+  padding:100px;
+  padding-top: 220px;
+}
+
+.btn-form {
+  width:40%;
+  margin: 5px 0 25px;
+}
+
+.btn-form {
+  /* background-color: yellowgreen;
+  color: white; */
+  font-size: 19px;
+  padding: 7px 14px;
+  border-radius: 5px;
+  margin-top:1rem;
+}
+
+
+.store-name {
+  padding-top:
+    10%;
+  
+}
+
+.success-text {
+  padding-top: 17%;
+}
+
+.btn-ticket {
+  color: #fff;
+    background-color: #fb7a7b;
+    border-color: #fc797b;
+}
+
 
 
 /*============ BOOTSTRAP BREAK POINTS:

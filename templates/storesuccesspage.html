@@ -13,7 +13,7 @@
 <body data-spy="scroll" data-target="#navbarResponsive">
   <div id="home">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    	<a class="navbar-brand" href="#"><img src="static/img/logo.png"></a>
+    	<a class="navbar-brand" href="/"><img src="static/img/logo2.png"></a>
     	<button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarResponsive">
             <span class="navbar-toggler-icon"></span>
@@ -30,10 +30,10 @@
 
   <br>
 <!-- Thank you text Section -->
-  <div class="text-center">
+  <div class="success-text text-center">
     <div class="storeInfo">
-      <h1 id="storeName">Thank you for registring with Queue Up!</h1>
-      <p id="storeAddress">You can go to My Store to see your current queue</p>
+      <h1 id="storeName">Thank you for registering with Queue Up!</h1>
+      <p id="storeAddress">You can go to My Store to see your current queue.</p>
     </div>
 <!-- End of thank you text Section-->
 
@@ -44,9 +44,12 @@
               <div class="row text-white">
                   <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
                       <div class="px-2">
-                          <form action="/" class="justify-content-center">
+
+                        <button type="button" class="prim-button btn btn-primary btn-lg" onclick="location = '/'">Return to Start</button>
+            <button type="button" class="prim-button btn btn-primary btn-lg" onclick="location = '/myStore'">View My Store</button>
+                          <!-- <form action="/" class="justify-content-center">
                               <input type="submit" class="btn btn-primary btn-lg" value="Return to Start"></button>
-                          </form>
+                          </form> -->
                       </div>
                   </div>
               </div>
