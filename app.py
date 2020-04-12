@@ -80,6 +80,7 @@ def addresses():
         cur.close()
         return jsonify(ids)
 
+# Gets an address from grocery id
 @application.route('/address', methods=['POST'])
 def storeAddress():
     if flask.request.method == 'POST':
@@ -93,6 +94,7 @@ def storeAddress():
         cur.close()
         return jsonify(address)
 
+# Gets a name from grocery id
 @application.route('/name', methods=['POST'])
 def storeName():
     if flask.request.method == 'POST':
@@ -163,9 +165,26 @@ def generateCustomer():
         return flask.render_template('TicketSuccessPage.html')
     return flask.render_template('TicketSuccessPage.html')
 
+# Renders myposition.html using id,code,name
 @application.route('/myPosition/<string:id>/<string:code>')
 def my_position(id,code):
-    return flask.render_template('myposition.hmtl',id=id,code=code)
+    cur = db.cursor()
+    cur.execute('''SELECT store_name FROM groceryStores WHERE grocery_id = '''+id+";")
+    name = cur.fetchone()[0]
+    cur.close()
+    return flask.render_template('myposition.html',id=id,code=code,name=name)
+
+# Gets a position using grocery id and customer authentication
+@application.route('/getPosition',methods=['POST'])
+def get_position():
+    groceryID = request.form["id"]
+    code = request.form["code"]
+    cur = db.cursor()
+    cur.execute("SELECT position FROM queue"+groceryID+" WHERE authentication = "+code)
+    position = cur.fetchone()
+    print(position)
+    return jsonify(position)
+
 
 @application.route('/position/<string:id>',methods=['POST','GET'])
 def position(id):
