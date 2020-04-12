@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <p hidden id="id">{{ id }}</p>
-<body data-spy="scroll" data-target="#navbarResponsive">
+<body id="position-body" data-spy="scroll" data-target="#navbarResponsive">
 <!-- Start Home Section-->
 <!-- <div id="home"> -->
 
@@ -31,16 +31,22 @@
 
 <!-- <div class="position-store"> -->
     <!-- <div class="store-name text-center"> -->
-      <div id="storeInfo">
-        <h1 id="storeName"> {{ name }} </h1>
-      </div>
+      
     <!-- </div> -->
 
 <!-- </div> -->
 
     <!-- <section id="cover" class="min-vh-100"> -->
-      <div id="table-area">
-        <div class="container ">
+
+<div class="position-form container">
+      <div id="storeInfo">
+        <h1 id="storeName" class="text-center"> {{ name }} </h1>
+      </div>
+      <br>
+      <br>
+
+
+      <div id="table-position">
               <table class="table table-sm position-table text-center">
                 <thead>
                   <tr>
@@ -78,21 +84,34 @@
                 </tbody>
                 </table>
         </div>
-        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+
+
+        <div class="form-group"> <!-- [[[[[ underneath storename centered please ]]]]] -->
+          <form method="POST" class="justify-content-center">
+            <br>
+            <div class="auth-cust">
+            <label>Insert customers authentication code:</label>
+            <input type="text" class="form-control" name="code" placeholder="Insert code" required=True>
+          
+            <br>
+            <input type="submit" class="storeentry-button btn-form btn btn-primary position-button" value="Authenticate Customer"></button>
+          </div>
+          </form>
+
+        </div>
+
+
+
+        <!-- <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
         <div class="px-2">
-          <div class="form-group"> <!-- [[[[[ underneath storename centered please ]]]]] -->
-            <form method="POST" class="justify-content-center">
-              <label class="sr-only">Authentication Code:</label>
-              <input type="text" class="form-control" name="code" placeholder="Insert code" required=True>
-              <input type="submit" class="btn btn-primary btn-lg" value="Authenticate Customer"></button>
-            </form>
+          
           </div>
         </div>
         </div>
           </div>
-    </div>
+    </div> -->
     <!-- </section> -->
-  </div>
+  <!-- </div> -->
 <!-- <button onclick="storePage()">Hey</button> -->
 
 <!--- Script Source Files -->

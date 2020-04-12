@@ -30,36 +30,50 @@
 
 <!-- End of Navigation and logo HTML-->
 
-  <br>
+
+<div class="new-store-form container">
+  <h1 id="storeName">Thank you for registering with Queue Up!</h1>
+      <h5 id="storeAddress">You can go to My Store to see your current queue.</h5>
+      <h5>Your ID is: {{ id }}</h5>
+  <!-- <p>Fill out all the fields.</p> -->
+  <form action="/" >
+    <button type="button" class="storeentry-button btn btn-primary btn-lg" onclick="location = '/'">Return to Start</button>
+    <button type="button" class="storeentry-button btn btn-primary btn-lg" onclick="location = '/myStore'">View My Store</button>
+    </form>
+</div>
+
+
+
+
 <!-- Thank you text Section -->
-  <div class="success-text text-center">
+  <!-- <div class="success-text text-center">
     <div class="storeInfo">
       <h1 id="storeName">Thank you for registering with Queue Up!</h1>
       <h4 id="storeAddress">You can go to My Store to see your current queue.</h4>
       <h4>Your ID is: {{ id }}</h4>
-    </div>
+    </div> -->
 <!-- End of thank you text Section-->
 
 <!-- Beginning of User Info forms and Submit button -->
     <!-- <section id="cover" class="min-vh-100"> -->
-      <div id="cover-caption">
+      <!-- <div id="cover-caption">
           <div class="container">
               <div class="row text-white">
                   <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
                       <div class="px-2">
 
                         <button type="button" class="storeentry-button btn btn-primary btn-lg" onclick="location = '/'">Return to Start</button>
-            <button type="button" class="storeentry-button btn btn-primary btn-lg" onclick="location = '/myStore'">View My Store</button>
+            <button type="button" class="storeentry-button btn btn-primary btn-lg" onclick="location = '/myStore'">View My Store</button> -->
                           <!-- <form action="/" class="justify-content-center">
                               <input type="submit" class="btn btn-primary btn-lg" value="Return to Start"></button>
                           </form> -->
-                      </div>
+                      <!-- </div>
                   </div>
               </div>
           </div>
-      </div>
+      </div> -->
   <!-- </section> -->
-</div>
+
 
 <!--End of User Info and Submit button HTML-->
 </body>
