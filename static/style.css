@@ -98,8 +98,10 @@ body{
 }
 
 .about-desc {
-  margin-left: 500px;
-  margin-right: 500px;
+  /*padding-left: 300px;
+  padding-right: 300px;*/
+  /*margin-left: 300px;
+  margin-right: 300px;*/
 }
 
 /* .nav-link:active {
@@ -354,7 +356,7 @@ label{
 }
 
 .form-group{
-  margin-bottom: 25px;;
+  margin-bottom: 25px;
 }
 
 .form-group input {
