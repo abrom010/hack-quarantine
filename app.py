@@ -165,7 +165,21 @@ def generateCustomer():
 
 @application.route('/myPosition/<string:id>/<string:code>')
 def my_position(id,code):
-    return flask.render_template('myposition.hmtl',id=id,code=code)
+    cur = db.cursor()
+    cur.execute('''SELECT store_name FROM groceryStores WHERE grocery_id = '''+id+";")
+    name = cur.fetchone()[0]
+    cur.close()
+    return flask.render_template('myposition.html',id=id,code=code,name=name)
+
+@application.route('/getPosition',methods=['POST'])
+def get_position():
+    groceryID = request.form["id"]
+    code = request.form["code"]
+    cur = db.cursor()
+    cur.execute("SELECT position FROM queue"+groceryID+" WHERE authentication = "+code)
+    position = cur.fetchone()
+    print(position)
+    return jsonify(position)
 
 @application.route('/position/<string:id>',methods=['POST','GET'])
 def position(id):
