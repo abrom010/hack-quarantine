@@ -20,9 +20,9 @@ function httpPost(theUrl,data) {
 }
 
 function initMap() {
-  var latlong = new google.maps.LatLng(0, 0);
+  var latlong = new google.maps.LatLng(39, -101);
   var mapOptions = {
-      zoom: 3,
+      zoom: 5.5,
       center: latlong,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
@@ -50,7 +50,7 @@ function onPlaceChanged() {
   var place = autocomplete.getPlace();
   if (place.geometry) {
     map.panTo(place.geometry.location);
-    map.setZoom(10);
+    map.setZoom(13);
     search();
   } else {
     document.getElementById('autocomplete').placeholder = 'Enter a city';
